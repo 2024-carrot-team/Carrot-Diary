@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.carrot.carrotdiary"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.carrot.carrotdiary"
