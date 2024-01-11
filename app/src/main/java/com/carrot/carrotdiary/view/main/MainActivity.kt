@@ -1,4 +1,4 @@
-package com.carrot.carrotdiary.view
+package com.carrot.carrotdiary.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
