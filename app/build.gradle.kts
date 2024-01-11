@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.carrot.carrotdiary"
-    compileSdk = 34
+    compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
         applicationId = "com.carrot.carrotdiary"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = SdkVersions.minSdk
+        targetSdk = SdkVersions.targetSdk
+        versionCode = AppVersions.androidVersionCode
+        versionName = AppVersions.androidVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
