@@ -1,7 +1,8 @@
-package com.carrot.carrotdiary
+package com.carrot.carrotdiary.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.carrot.carrotdiary.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
