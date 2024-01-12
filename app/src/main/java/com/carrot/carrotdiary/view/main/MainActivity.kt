@@ -1,10 +1,11 @@
 package com.carrot.carrotdiary.view.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.carrot.carrotdiary.R
 import com.carrot.carrotdiary.databinding.ActivityMainBinding
-import com.carrot.carrotdiary.view.SettingActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -12,11 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        // 좋아 너무 좋아
-        binding.buttonSettingMain.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
+
+        // app themes 색상 참조하지 않음.
+        val bottomNavigationView = binding.navigationMain
+        bottomNavigationView.itemIconTintList = null
+
+        val navController =
+            supportFragmentManager.findFragmentById(R.id.nav_host)?.findNavController()
+        navController?.let {
+            bottomNavigationView.setupWithNavController(it)
         }
+
         val action = supportActionBar
         action?.hide()
     }
