@@ -7,7 +7,7 @@
     tools:context=".view.LoginActivity">
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/button_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그인"

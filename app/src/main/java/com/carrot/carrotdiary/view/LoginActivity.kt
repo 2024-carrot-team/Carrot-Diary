@@ -14,12 +14,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(getLayoutInflater())
         setContentView(binding.getRoot())
 
-        binding.btnLogin.setOnClickListener { v ->
-
+        binding.buttonLoginLogin.setOnClickListener {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
         }
 
     }
-    
+
 }

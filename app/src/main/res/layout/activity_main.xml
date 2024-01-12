@@ -18,12 +18,12 @@
 
     <ImageButton
         android:id="@+id/button_setting_main"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:background="@color/white"
         android:scaleType="fitXY"
-        android:src="@drawable/setting"
+        android:src="@drawable/ic_setting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
