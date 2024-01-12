@@ -1,11 +1,13 @@
 package com.carrot.carrotdiary.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.carrot.carrotdiary.R
 import com.carrot.carrotdiary.databinding.ActivityMainBinding
+import com.carrot.carrotdiary.view.SettingActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         navController?.let {
             bottomNavigationView.setupWithNavController(it)
         }
-
+        binding.buttonSettingMain.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
         val action = supportActionBar
         action?.hide()
     }
