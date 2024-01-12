@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/nav_diaryFragment">
+    <fragment
+        android:id="@+id/nav_notifyFragment"
+        android:name="com.carrot.carrotdiary.view.main.AlarmFragment"
+        android:label="fragment_alarm"
+        tools:layout="@layout/fragment_alarm" />
+    <fragment
+        android:id="@+id/nav_diaryFragment"
+        android:name="com.carrot.carrotdiary.view.main.DiaryFragment"
+        android:label="fragment_diary"
+        tools:layout="@layout/fragment_diary">
+        <action
+            android:id="@+id/action_diaryFragment_to_alarmFragment"
+            app:destination="@id/nav_notifyFragment" />
+        <action
+            android:id="@+id/action_diaryFragment_to_profileFragment"
+            app:destination="@id/nav_profileFragment" />
+        <action
+            android:id="@+id/action_diaryFragment_to_questionFragment"
+            app:destination="@id/nav_questionFragment" />
+    </fragment>
 
+
+    <fragment
+        android:id="@+id/nav_profileFragment"
+        android:name="com.carrot.carrotdiary.view.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_questionFragment"
+        android:name="com.carrot.carrotdiary.view.main.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" />
 </navigation>
