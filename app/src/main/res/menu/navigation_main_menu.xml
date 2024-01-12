@@ -2,31 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/diaryFragment"
+        android:id="@+id/nav_diaryFragment"
         android:enabled="true"
         android:icon="@drawable/ic_diary"
-        android:title="일기"/>
+        android:title="일기" />
 
     <item
-        android:id="@+id/questionFragment"
+        android:id="@+id/nav_questionFragment"
         android:enabled="true"
         android:icon="@drawable/ic_question"
-        android:title="고민"/>
+        android:title="고민" />
 
     <item
-        android:id="@+id/diaryWriteFragment"
+        android:id="@+id/nav_diaryWriteFragment"
         android:enabled="true"
         android:icon="@drawable/ic_diary_write"
-        android:title="당근일기"/>
+        android:title="당근일기" />
     <item
-        android:id="@+id/notifyFragment"
+        android:id="@+id/nav_notifyFragment"
         android:enabled="true"
         android:icon="@drawable/ic_bell"
-        android:title="알림"/>
+        android:title="알림" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/nav_profileFragment"
         android:enabled="true"
         android:icon="@drawable/ic_frame_circle"
-        android:title="프로필"/>
+        android:title="프로필" />
 </menu>
