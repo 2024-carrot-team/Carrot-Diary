@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_alarm" />
     <fragment
         android:id="@+id/nav_diaryFragment"
-        android:name="com.carrot.carrotdiary.view.main.DiaryFragment"
+        android:name="com.carrot.carrotdiary.view.main.DailyFragment"
         android:label="fragment_diary"
         tools:layout="@layout/fragment_diary">
         <action
@@ -21,7 +21,10 @@
             android:id="@+id/action_diaryFragment_to_profileFragment"
             app:destination="@id/nav_profileFragment" />
         <action
-            android:id="@+id/action_diaryFragment_to_questionFragment"
+            android:id="@+id/action_nav_diaryFragment_to_diaryWriteDialogFragment"
+            app:destination="@id/nav_diaryWriteFragment" />
+        <action
+            android:id="@+id/action_nav_diaryFragment_to_questionFragment"
             app:destination="@id/nav_questionFragment" />
     </fragment>
 
@@ -36,4 +39,12 @@
         android:name="com.carrot.carrotdiary.view.main.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" />
+
+    <dialog
+        android:id="@+id/nav_diaryWriteFragment"
+        android:name="com.carrot.carrotdiary.view.main.DiaryWriteDialogFragment"
+        android:label="fragment_diary_write_dialog"
+        tools:layout="@layout/fragment_diary_write_dialog" />
+
+
 </navigation>
