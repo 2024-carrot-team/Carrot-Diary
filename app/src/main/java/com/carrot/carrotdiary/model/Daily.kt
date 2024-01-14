@@ -4,8 +4,8 @@ import java.util.Date
 
 data class Daily(
     val id: Int,
-    val date: Date,
+    val date: Date?,
     val likes: Int,
-    val comments: List<Comment>,
-    val accidents: List<Accident>
+    val comments: List<Comment>?,
+    val accidents: List<Accident>?,
 )
