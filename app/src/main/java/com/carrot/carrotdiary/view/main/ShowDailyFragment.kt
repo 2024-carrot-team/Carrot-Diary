@@ -1,5 +1,6 @@
 package com.carrot.carrotdiary.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,12 @@ import com.carrot.carrotdiary.model.Daily
 
 
 class ShowDailyFragment : Fragment() {
+
+    lateinit var mainActivity: MainActivity
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +36,10 @@ class ShowDailyFragment : Fragment() {
             val item = Daily(i, null, i, null, null)
             list.add(i, item)
         }
-        var adapter = ShowDailyAdapter()
+        var adapter = ShowDailyAdapter(mainActivity.baseContext)
+
         binding.recyclerShowShowDaily.adapter = adapter
-        
+
         arguments?.takeIf { it.containsKey(DailyAdapter.DAILY_TYPE) }?.apply {
             var dailryType = getInt(DailyAdapter.DAILY_TYPE)
             when (dailryType) {
