@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.main.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="프로필" />
+    <ImageView
+        android:id="@+id/ImageView_profile_profileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_frame_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/TextView_userId_profileFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="유저 아이디"
+        app:layout_constraintStart_toStartOf="@id/ImageView_profile_profileFragment"
+        app:layout_constraintTop_toBottomOf="@id/ImageView_profile_profileFragment" />
+
+    <TextView
+        android:id="@+id/TextView_userMention_profileFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="간단한 자기소개 멘트"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ImageView_profile_profileFragment" />
+
+    <TextView
+        android:id="@+id/TextView_following_profileFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="팔로잉 \n 0명"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextView_userMention_profileFragment" />
+
+    <TextView
+        android:id="@+id/TextView_follower_profileFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="팔로위 \n 0명"
+        app:layout_constraintEnd_toStartOf="@id/TextView_following_profileFragment"
+        app:layout_constraintTop_toTopOf="@id/TextView_following_profileFragment" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="일기장 \n 13개"
+        app:layout_constraintEnd_toStartOf="@id/TextView_follower_profileFragment"
+        app:layout_constraintTop_toTopOf="@id/TextView_following_profileFragment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
