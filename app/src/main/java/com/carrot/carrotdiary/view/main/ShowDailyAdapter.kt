@@ -53,7 +53,7 @@ class ShowDailyAdapter(private val context: Context) :
     class DailyViewHolder(private val itemDailyBinding: ItemDailyBinding) :
         RecyclerView.ViewHolder(itemDailyBinding.root) {
         fun bind(item: Daily, context: Context) {
-            itemDailyBinding.text.text = item.id.toString()
+            // itemDailyBinding.commentIvDaily.t = item.id.toString()
             itemDailyBinding.itemDaily.setOnClickListener {
 //                val intent = Intent(context, ::class.java)
 //                startActivity(intent)

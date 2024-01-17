@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_Daily"
     android:layout_width="match_parent"
     android:layout_height="300dp"
@@ -47,14 +46,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:text="사용자id" />
+            android:text="사용자id" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            tools:text="2024-12-01" />
+            android:text="2024-12-01" />
 
     </LinearLayout>
 
@@ -70,9 +69,9 @@
         android:id="@+id/heartCount_tv_daily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="50"
         app:layout_constraintStart_toEndOf="@id/heart_iv_daily"
-        app:layout_constraintTop_toBottomOf="@id/iv_daily"
-        tools:text="50" />
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
 
     <ImageView
@@ -87,18 +86,18 @@
         android:id="@+id/commentCount_tv_daily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="44"
         app:layout_constraintStart_toEndOf="@id/comment_iv_daily"
-        app:layout_constraintTop_toBottomOf="@id/iv_daily"
-        tools:text="44" />
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
 
     <TextView
         android:id="@+id/viewsCount_tv_daily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="44"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_daily"
-        tools:text="44" />
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
     <ImageView
         android:id="@+id/views_iv_daily"
