@@ -10,5 +10,4 @@ data class User(
     val nickname: String,
     val birthDate: Date,
     val profile: Uri,
-
-    )
+)

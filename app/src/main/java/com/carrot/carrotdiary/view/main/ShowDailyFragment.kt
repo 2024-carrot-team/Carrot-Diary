@@ -52,7 +52,6 @@ class ShowDailyFragment : Fragment() {
                     adapter.submitList(list)
                 }
             }
-
         }
         return binding.root
     }

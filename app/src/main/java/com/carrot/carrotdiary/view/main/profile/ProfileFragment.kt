@@ -1,4 +1,4 @@
-package com.carrot.carrotdiary.view.main
+package com.carrot.carrotdiary.view.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
