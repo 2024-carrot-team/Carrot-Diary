@@ -1,0 +1,42 @@
+[
+  {
+    "postDiary_id": 1,
+    "title": "나의 첫 번째 일기",
+    "image": "post_diary_image_1.jpg",
+    "date": "2023-12-15 14:30:00",
+    "diaries": [
+      {
+        "diary_id": 1,
+        "content": "오늘은 좋은 날이었습니다.",
+        "image": "diary_image_1.jpg",
+        "date": "2023-12-15 14:45:00"
+      },
+      {
+        "diary_id": 2,
+        "content": "저녁 식사를 함께 했습니다.",
+        "image": "diary_image_2.jpg",
+        "date": "2023-12-15 19:00:00"
+      }
+    ]
+  },
+  {
+    "postDiary_id": 2,
+    "title": "나의 두 번째 일기",
+    "image": "post_diary_image_2.jpg",
+    "date": "2023-12-16 10:00:00",
+    "diaries": [
+      {
+        "diary_id": 3,
+        "content": "아침에 산책을 다녀왔습니다.",
+        "image": "diary_image_3.jpg",
+        "date": "2023-12-16 10:30:00"
+      },
+      {
+        "diary_id": 4,
+        "content": "친구와 영화를 보았습니다.",
+        "image": "diary_image_4.jpg",
+        "date": "2023-12-16 18:00:00"
+      }
+    ]
+  }
+]

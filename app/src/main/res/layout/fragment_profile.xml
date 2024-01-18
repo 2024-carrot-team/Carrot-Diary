@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="일기장 \n 13개"
+        android:text="일기장 \n 10개"
         app:layout_constraintEnd_toStartOf="@id/TextView_follower_profileFragment"
         app:layout_constraintTop_toTopOf="@id/TextView_following_profileFragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
