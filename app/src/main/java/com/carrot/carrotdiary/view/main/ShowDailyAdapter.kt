@@ -28,9 +28,7 @@ class ShowDailyAdapter(private val context: Context) :
             ): Boolean {
                 return oldItem.id == newItem.id
             }
-
         }
-
     }
 
 

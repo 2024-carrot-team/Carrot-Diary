@@ -49,6 +49,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
+
     implementation(AndroidX.RECYCLERVIEW)
 
     //nav component
@@ -70,6 +71,12 @@ dependencies {
 
     // ViewModel
     implementation(AndroidX.LIFECYCLE_VIEW_MODEL)
+
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
+
 
     //Gson
     implementation(Gson.GSON)
