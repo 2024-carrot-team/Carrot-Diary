@@ -1,4 +1,4 @@
-package com.carrot.carrotdiary.view.main
+package com.carrot.carrotdiary.view.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.carrot.carrotdiary.R
+import com.carrot.carrotdiary.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
-
+    private lateinit var _binding: FragmentProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
