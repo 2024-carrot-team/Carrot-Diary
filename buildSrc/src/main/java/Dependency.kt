@@ -7,7 +7,8 @@ object Versions {
 object NavComponent {
     const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
-    const val NAVIGATION_DYNAMIC_FEATURES_FRAGMENT = "androidx.navigation:navigation-dynamic-features-fragment:$NAV_VERSION"
+    const val NAVIGATION_DYNAMIC_FEATURES_FRAGMENT =
+        "androidx.navigation:navigation-dynamic-features-fragment:$NAV_VERSION"
     const val NAVIGATION_TESTING = "androidx.navigation:navigation-testing:$NAV_VERSION"
     const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:2.4.0-alpha10"
 }
@@ -20,9 +21,13 @@ object AndroidX {
     const val LIFECYCLE_LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     const val ACTIVITY = "androidx.activity:activity-ktx:1.3.1"
     const val FRAGMENT = "androidx.fragment:fragment-ktx:1.5.2"
+    const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.1"
 }
 
 object KTX {
     const val CORE = "androidx.core:core-ktx:1.6.0"
 }
 
+object Gson {
+    const val GSON = "com.google.code.gson:gson:2.8.9"
+}

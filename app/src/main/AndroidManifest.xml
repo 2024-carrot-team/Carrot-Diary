@@ -14,7 +14,9 @@
         android:theme="@style/Theme.Carrotdiary"
         tools:targetApi="31">
         <activity
-            android:name=".view.diary.DiaryActivity"
+
+            android:name=".view.main.diary.DiaryDetailActivity"
+
             android:exported="false" />
         <activity
             android:name=".view.SettingActivity"

@@ -1,16 +1,13 @@
 package com.carrot.carrotdiary.model
 
+import android.net.Uri
+import java.time.LocalDateTime
+
 data class Diary(
     val id: Int?,
     val title: String,
-    val user: UserInfo,
+    val user: String,
     val dailyList: List<Daily>,
-    val cover: String,
-    val date: String,
-) {
-    data class UserInfo(
-        val id: String,
-        val profile: String
-    )
-}
-
+    val cover: Uri,
+    val createdAt: LocalDateTime
+)

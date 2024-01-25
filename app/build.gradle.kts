@@ -1,3 +1,7 @@
+import SdkVersions.compileSdk
+import SdkVersions.minSdk
+import SdkVersions.targetSdk
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -46,6 +50,8 @@ dependencies {
     implementation(AndroidX.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
 
+    implementation(AndroidX.RECYCLERVIEW)
+
     //nav component
     implementation(NavComponent.NAVIGATION_FRAGMENT)
     implementation(NavComponent.NAVIGATION_UI)
@@ -72,4 +78,6 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
 
 
+    //Gson
+    implementation(Gson.GSON)
 }
