@@ -1,5 +1,6 @@
 package com.carrot.carrotdiary.model
 
+
 import java.util.Date
 
 data class Daily(

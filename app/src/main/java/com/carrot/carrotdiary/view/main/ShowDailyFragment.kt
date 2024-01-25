@@ -33,7 +33,7 @@ class ShowDailyFragment : Fragment() {
         val list = mutableListOf<Daily>()
 
         for (i in 0 until 10) {
-            val item = Daily(i, null, i, null, null)
+            val item = Daily(i, null, i, emptyList())
             list.add(i, item)
         }
         var adapter = ShowDailyAdapter(mainActivity.baseContext)
