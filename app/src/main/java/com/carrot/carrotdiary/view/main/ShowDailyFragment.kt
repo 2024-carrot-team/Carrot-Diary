@@ -60,3 +60,14 @@ class ShowDailyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     }
 }
+
+//    fun loadHomeData() {
+//        //TODO Data Layer - Repository 에 요청
+//        val homeData = homeRepository.getHomeData()
+//        homeData?.let { homeData ->
+//            _title.value = homeData.title
+//            _topBanners.value = homeData.topBanners
+//            _promotions.value = homeData.promotions
+//        }
+//
+//    }
