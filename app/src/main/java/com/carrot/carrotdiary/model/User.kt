@@ -1,6 +1,5 @@
 package com.carrot.carrotdiary.model
 
-import android.net.Uri
 import java.util.Date
 
 data class User(
@@ -9,5 +8,5 @@ data class User(
     val password: String,
     val nickname: String,
     val birthDate: Date,
-    val profile: Uri,
+    val profile: String,
 )
