@@ -11,6 +11,7 @@ import com.carrot.carrotdiary.databinding.ItemThumbnailDiaryBinding
 import com.carrot.carrotdiary.model.Accident
 import com.carrot.carrotdiary.model.Daily
 import com.carrot.carrotdiary.model.Diary
+import com.carrot.carrotdiary.model.User
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -24,7 +25,14 @@ class DiaryListAdapter() :
 
 
     private val userInfo =
-        Diary.UserInfo(id = "ksd5715", profile = "https://source.unsplash.com/random")
+        User(
+            id = "ksd5715",
+            email = "rltjdeh@naver.com",
+            password = "12312",
+            nickname = "바니바니",
+            birthDate = localDate,
+            profile = "https://source.unsplash.com/random"
+        )
     private val accidentImageList = arrayListOf<String>(
         "https://source.unsplash.com/random", "https://source.unsplash.com/random"
     )
@@ -46,41 +54,41 @@ class DiaryListAdapter() :
             id = 0, date = localDate, likes = 1, accidents = accidentList
         )
     )
-    val diaryList = arrayListOf<Diary>(
+    private val diaryList = arrayListOf<Diary>(
         Diary(
             id = 1,
             title = "당신의 근심을 적는 일기 ",
             user = userInfo,
             dailyList = dailyList,
-            cover = "https://source.unsplash.com/random",
+            cover = "https://source.unsplash.com/random/cat",
             date = "2024년01월24일11시21분",
         ), Diary(
             id = 1,
             title = "당신의 근심을 적는 일기 ",
             user = userInfo,
             dailyList = dailyList,
-            cover = "https://source.unsplash.com/random",
+            cover = "https://source.unsplash.com/random/cat",
             date = "2024년01월24일11시21분",
         ), Diary(
             id = 1,
             title = "당신의 근심을 적는 일기 ",
             user = userInfo,
             dailyList = dailyList,
-            cover = "https://source.unsplash.com/random",
+            cover = "https://source.unsplash.com/random/cat",
             date = "2024년01월24일11시21분",
         ), Diary(
             id = 1,
             title = "당신의 근심을 적는 일기 ",
             user = userInfo,
             dailyList = dailyList,
-            cover = "https://source.unsplash.com/random",
+            cover = "https://source.unsplash.com/random/dog",
             date = "2024년01월24일11시21분",
         ), Diary(
             id = 1,
             title = "당신의 근심을 적는 일기 ",
             user = userInfo,
             dailyList = dailyList,
-            cover = "https://source.unsplash.com/random",
+            cover = "https://source.unsplash.com/random/cat",
             date = "2024년01월24일11시21분",
         )
     )
