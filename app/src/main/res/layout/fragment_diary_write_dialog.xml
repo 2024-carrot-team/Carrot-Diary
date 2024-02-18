@@ -7,21 +7,58 @@
     app:cardCornerRadius="5dp"
     tools:context=".view.main.DiaryWriteDialogFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="오늘은 어떤 하루였나요?" />
+            android:gravity="center"
+            android:text="오늘은 어떤 하루였나요?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_subTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="나의 당근 일기장"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_diaryList_diaryWriteDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/button_makeNewDiary_diaryWriteDialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_subTitle"
+            tools:listitem="@layout/item_diary_title" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_makeNewDiary_diaryWriteDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="확인" />
-    </LinearLayout>
+            android:layout_margin="15dp"
+            android:background="@drawable/button_make_new_diary_frame"
+            android:text="새로 만들기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_diaryList_diaryWriteDialog" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

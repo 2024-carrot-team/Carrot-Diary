@@ -35,7 +35,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewPagerDiary.adapter = ProfileAdapter(this)
+        binding.viewPagerDiary.adapter = ProfileAdapter(this, viewModel)
 
         TabLayoutMediator(
             binding.tabLayoutDiaryProfileFragment,
