@@ -80,6 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline_bottom_writeDailyActivity" />
 
     <Button
+        android:id="@+id/button_regiDaily_writeDailyActivity"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

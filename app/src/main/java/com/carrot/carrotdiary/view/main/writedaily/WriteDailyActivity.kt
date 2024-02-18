@@ -13,6 +13,7 @@ import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
 import com.carrot.carrotdiary.databinding.ActivityWriteDailyBinding
 import com.carrot.carrotdiary.databinding.DialogAccidentMakeBinding
+import com.carrot.carrotdiary.view.main.dailylist.DailyListActivity
 import com.carrot.carrotdiary.view.main.makediary.AccidentImageListAdapter
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -27,12 +28,17 @@ class WriteDailyActivity : AppCompatActivity() {
     private val accidentListAdapter = AccidentListAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityWriteDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
         binding.buttonMakeNewAccidentWriteDailyActivity.setOnClickListener { writeAccident() }
         binding.recyclerViewAccidentListWriteDailyActivity.adapter = accidentListAdapter
+
+        binding.buttonRegiDailyWriteDailyActivity.setOnClickListener {
+            val intent = Intent(this, DailyListActivity::class.java)
+            startActivity(intent)
+        }
+
         initLiveData()
     }
 

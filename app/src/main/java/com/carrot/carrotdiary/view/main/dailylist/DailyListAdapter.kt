@@ -1,6 +1,7 @@
 package com.carrot.carrotdiary.view.main.dailylist
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import java.util.Date
 
 
 // viewtype
-private const val VIEW_TYPE_DATE = 0
+private const val VIEW_TYPE_HEADER = 0
 private const val VIEW_TYPE_CONTAINER = 1
 
 class DailyListAdapter(private val context: Context) :
@@ -25,13 +26,16 @@ class DailyListAdapter(private val context: Context) :
         // Date로 그룹핑된 Map
         val dateGroups = diary.dailyList.groupBy { it.date }
 
-        val dailyListItem = mutableListOf<Any>()
-
         // {Date1, Daily, Daily, Date2, Daily, Daily, .... (Daily 중 가장 첫 번째꺼 출력!)
         dateGroups.entries.forEach { entry ->
             entry.key?.let { dailyListItem.add(it) }
             dailyListItem.addAll(entry.value)
         }
+
+        dailyListItem.forEach { item ->
+            Log.d("ddddddd", item.toString())
+        }
+
 
         // update DataSet
         dailyListItem.addAll(dailyListItem)
@@ -41,10 +45,11 @@ class DailyListAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+        Log.d("ddddddd", "onCreateViewHolder")
         return when (viewType) {
-            VIEW_TYPE_DATE -> {
-                DailyListContainerViewHolder(
-                    ItemDailyListBinding.inflate(
+            VIEW_TYPE_HEADER -> {
+                DailyListDateViewHolder(
+                    ItemDailyListDateBinding.inflate(
                         inflater,
                         parent,
                         false
@@ -52,8 +57,8 @@ class DailyListAdapter(private val context: Context) :
                 )
             }
             // VIEW_TYPE_CONTAINER
-            else -> DailyListDateViewHolder(
-                ItemDailyListDateBinding.inflate(
+            else -> DailyListContainerViewHolder(
+                ItemDailyListBinding.inflate(
                     inflater,
                     parent,
                     false
@@ -62,9 +67,12 @@ class DailyListAdapter(private val context: Context) :
         }
     }
 
+
     override fun getItemViewType(position: Int): Int {
+        Log.d("ddddddd", "getItemViewType")
+
         return when (dailyListItem[position]) {
-            is Date? -> VIEW_TYPE_DATE
+            is Date? -> VIEW_TYPE_HEADER
             else -> VIEW_TYPE_CONTAINER // Daily
         }
     }
@@ -79,6 +87,8 @@ class DailyListAdapter(private val context: Context) :
             is DailyListDateViewHolder -> {
                 val item = dailyListItem[position] as Date?
                 holder.bind(item)
+                Log.d("ddddddd", "onBindViewHolder")
+
             }
 
             is DailyListContainerViewHolder -> {
@@ -95,8 +105,8 @@ class DailyListAdapter(private val context: Context) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: Date?) {
 
-
             itemBinding.dateTvDailyList.text = "1월"
+            Log.d("ddddddd", "DailyListDateViewHolder")
 
             //itemBinding.executePendingBindings()
 
@@ -111,9 +121,9 @@ class DailyListAdapter(private val context: Context) :
             itemBinding.containerTvDily.text = item.accidents[0].toString()
             itemBinding.dayTvDailyList.text = "23일"
 
+            Log.d("list", "container")
 
             //itemBinding.executePendingBindings()
         }
     }
-
 }
