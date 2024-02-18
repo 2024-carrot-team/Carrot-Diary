@@ -28,6 +28,9 @@
         android:theme="@style/Theme.Carrotdiary"
         tools:targetApi="31">
         <activity
+            android:name=".view.main.dailylist.DailyListActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.writedaily.WriteDailyActivity"
             android:exported="false" />
         <activity
