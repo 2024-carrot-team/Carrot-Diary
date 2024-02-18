@@ -4,6 +4,17 @@ object Versions {
     const val NAV_VERSION = "2.4.0-alpha10"
 }
 
+object Retrofit {
+    const val RETROFIT = "com.squareup.retrofit2:retrofit:2.9.0"
+    const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:2.9.0"
+    const val CONVERTER_JAXB = "com.squareup.retrofit2:converter-jaxb:2.9.0"
+}
+
+object OkHttp {
+    const val OKHTTP = "com.squareup.okhttp3:okhttp:4.9.1"
+    const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+}
+
 object NavComponent {
     const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
