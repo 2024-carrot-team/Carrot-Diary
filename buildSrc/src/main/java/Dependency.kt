@@ -10,6 +10,13 @@ object Retrofit {
     const val CONVERTER_JAXB = "com.squareup.retrofit2:converter-jaxb:2.9.0"
 }
 
+object Glide {
+    const val GLIDE = "com.github.bumptech.glide:glide:4.16.0"
+    const val GLIDE_ANNOTATION = "com.github.bumptech.glide:compiler:4.9.0"
+
+}
+
+
 object OkHttp {
     const val OKHTTP = "com.squareup.okhttp3:okhttp:4.9.1"
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:4.9.1"

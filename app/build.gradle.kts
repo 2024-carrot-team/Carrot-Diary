@@ -73,12 +73,19 @@ dependencies {
     // ViewModel
     implementation(AndroidX.LIFECYCLE_VIEW_MODEL)
 
+    // Retrofit
+    implementation(Retrofit.RETROFIT)
+    implementation(Retrofit.CONVERTER_GSON)
+    implementation(Retrofit.CONVERTER_JAXB)
+
+    //okHttp
+    implementation(OkHttp.OKHTTP)
+    implementation(OkHttp.LOGGING_INTERCEPTOR)
 
     //Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
-
-
+    implementation(Glide.GLIDE)
+    annotationProcessor(Glide.GLIDE_ANNOTATION)
+    
     //Gson
     implementation(Gson.GSON)
 }
