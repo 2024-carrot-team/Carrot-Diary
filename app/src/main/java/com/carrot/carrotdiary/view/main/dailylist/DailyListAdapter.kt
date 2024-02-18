@@ -40,12 +40,12 @@ class DailyListAdapter(private val diaryList: List<Diary>, private val context: 
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when (diaryList[position]) {
-            is -> VIEW_TYPE_DATE
-            is -> VIEW_TYPE_CONTAINER
-        }
-    }
+//    override fun getItemViewType(position: Int): Int {
+//        return when (diaryList[position]) {
+//            is -> VIEW_TYPE_DATE
+//            is -> VIEW_TYPE_CONTAINER
+//        }
+//    }
 
 
     override fun getItemCount(): Int {
@@ -55,13 +55,13 @@ class DailyListAdapter(private val diaryList: List<Diary>, private val context: 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is DailyListContainerViewHolder -> { // sealed 상속관계로...
-                val item = diaryList[position] as  ?? // 타입변환
-                holder.bind(item)
+//                val item = diaryList[position] as  ?? // 타입변환
+//                holder.bind(item)
             }
 
             is DailyListDateViewHolder -> {
-                val item = diaryList[position] as  ??
-                holder.bind(item)
+//                val item = diaryList[position] as  ??
+//                holder.bind(item)
             }
 
         }

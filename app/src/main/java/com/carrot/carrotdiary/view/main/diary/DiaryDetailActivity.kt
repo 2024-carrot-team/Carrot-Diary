@@ -16,9 +16,9 @@ class DiaryDetailActivity : AppCompatActivity() {
 
         val list = mutableListOf<Diary>()
 
-        list.add(Diary(1, "title1", "guen", null, null, null))
-        list.add(Diary(2, "title2", "guen", null, null, null))
-        list.add(Diary(3, "title3", "guen", null, null, null))
+//        list.add(Diary(1, "title1", "guen", null, null, null))
+//        list.add(Diary(2, "title2", "guen", null, null, null))
+//        list.add(Diary(3, "title3", "guen", null, null, null))
 
         val adapter = DiaryDetailAdapter(list, this@DiaryDetailActivity)
 
