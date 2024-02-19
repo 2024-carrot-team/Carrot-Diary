@@ -1,18 +1,22 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.ncc.data"
-    compileSdk = 34
+    namespace = "com.carrot.data"
+    compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
-        applicationId = "com.ncc.data"
-        minSdk = 33
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = "com.carrot.carrotdiary"
+        minSdk = SdkVersions.minSdk
+        targetSdk = SdkVersions.targetSdk
+        versionCode = AppVersions.androidVersionCode
+        versionName = AppVersions.androidVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,10 +41,29 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation (project (":domain"))
+
+    implementation(KTX.CORE)
+    implementation(AndroidX.APP_COMPAT)
+
+    // Retrofit
+    implementation(Retrofit.RETROFIT)
+    implementation(Retrofit.CONVERTER_GSON)
+    implementation(Retrofit.CONVERTER_JAXB)
+
+
+    // Retrofit
+    implementation (Retrofit.RETROFIT)
+    implementation (Retrofit.CONVERTER_GSON)
+    implementation (Retrofit.CONVERTER_JAXB)
+
+    //okHttp
+    implementation (OkHttp.OKHTTP)
+    implementation (OkHttp.LOGGING_INTERCEPTOR)
+
+
+    // dager hilt
+    implementation (DaggerHilt.DAGGER_HILT)
+    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
 }
