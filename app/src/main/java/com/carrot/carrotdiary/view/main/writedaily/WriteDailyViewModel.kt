@@ -3,6 +3,7 @@ package com.carrot.carrotdiary.view.main.writedaily
 import androidx.lifecycle.ViewModel
 import com.carrot.carrotdiary.common.Dummy
 import com.carrot.carrotdiary.model.Accident
+import com.carrot.carrotdiary.model.Daily
 import com.carrot.carrotdiary.model.Diary
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -55,6 +56,15 @@ class WriteDailyViewModel : ViewModel() {
             content = content
         )
         _accidentId.value += 1
+    }
+
+    fun addDaily() {
+        val daily = Daily(
+            id = 0,
+            date = Date(),
+            likes = 0,
+            accidents = _accidentList.value,
+        )
     }
 
 }

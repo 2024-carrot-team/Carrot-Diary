@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.carrot.carrotdiary.databinding.ActivityLoginBinding
 import com.carrot.carrotdiary.view.main.MainActivity
+import com.carrot.carrotdiary.view.main.signup.SignUpActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -16,6 +17,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLoginLogin.setOnClickListener {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonSignUpLogin.setOnClickListener {
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
 

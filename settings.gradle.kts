@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "carrotdiary"
 include(":app")
- 
+include(":data")
+include(":domain")

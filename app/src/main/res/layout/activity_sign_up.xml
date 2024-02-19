@@ -4,29 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginActivity">
+    tools:context=".view.main.signup.SignUpActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_loginGuideline_login"
+        android:id="@+id/guideline_loginGuideline_signUpActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
     <EditText
-        android:id="@+id/editText_loginId_login"
+        android:id="@+id/editText_loginId_signUpActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:hint="아이디"
-        app:layout_constraintBottom_toTopOf="@id/editText_password_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_loginGuideline_login" />
+        app:layout_constraintTop_toTopOf="@id/guideline_loginGuideline_signUpActivity" />
 
 
     <EditText
-        android:id="@+id/editText_password_login"
+        android:id="@+id/editText_password_signUpActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -34,23 +33,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_loginId_login" />
+        app:layout_constraintTop_toBottomOf="@id/editText_loginId_signUpActivity" />
 
     <Button
-        android:id="@+id/button_login_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:background="@drawable/accident_make_frame"
-        android:text="로그인"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_password_login" />
-
-    <Button
-        android:id="@+id/button_signUp_login"
+        android:id="@+id/button_signUp_signUpActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -60,5 +46,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_login_login" />
+        app:layout_constraintTop_toBottomOf="@id/editText_password_signUpActivity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
