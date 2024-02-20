@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.carrot.carrotdiary.R
+import com.carrot.carrotdiary.view.auth.login.LoginActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

@@ -48,7 +48,6 @@ class WriteDailyActivity : AppCompatActivity() {
             viewModel.diary.collect { diary ->
                 binding.textViewDailyTitleWriteDailyActivity.text = diary.title
             }
-
         }
         lifecycleScope.launch {
             viewModel.date.collect { date ->
@@ -116,6 +115,4 @@ class WriteDailyActivity : AppCompatActivity() {
                 }
             }
         }
-
-
 }

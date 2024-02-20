@@ -1,4 +1,4 @@
-package com.carrot.carrotdiary.view.main.signup
+package com.carrot.carrotdiary.view.auth.signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,7 +18,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.buttonSignUpSignUpActivity.setOnClickListener {
             val id = binding.editTextLoginIdSignUpActivity.text.toString()
             val password = binding.editTextPasswordSignUpActivity.text.toString()
-            viewModel.login(id, password)
+            viewModel.signUp(id, password)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
