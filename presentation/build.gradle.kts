@@ -47,9 +47,13 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
-
     implementation(AndroidX.RECYCLERVIEW)
 
+    //Test
+    testImplementation (TestTool.JUNIT)
+    androidTestImplementation (TestTool.ANDROID_X_JUNIT)
+    androidTestImplementation (TestTool.ANDROID_X_ESPRESSO)
+    
     //nav component
     implementation(NavComponent.NAVIGATION_FRAGMENT)
     implementation(NavComponent.NAVIGATION_UI)
