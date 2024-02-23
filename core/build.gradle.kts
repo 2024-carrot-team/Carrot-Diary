@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.carrot.carrotdiary"
+    namespace = "com.carrot.core"
     compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
-        applicationId = "com.carrot.carrotdiary"
+        applicationId = "com.carrot.core"
         minSdk = SdkVersions.minSdk
         targetSdk = SdkVersions.targetSdk
         versionCode = AppVersions.androidVersionCode
@@ -35,27 +35,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-    //androidx
-    implementation (project (":domain"))
-    implementation (KTX.CORE)
-    implementation (AndroidX.APP_COMPAT)
 
-    // ViewModel
-    implementation(AndroidX.LIFECYCLE_VIEW_MODEL)
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":presentation"))
 
-    //by viewModel
-    implementation(AndroidX.ACTIVITY)
-    implementation(AndroidX.FRAGMENT)
-
-    // ViewModel
-    implementation(AndroidX.LIFECYCLE_VIEW_MODEL)
+    // dager hilt
+    implementation(DaggerHilt.DAGGER_HILT)
+    kapt(DaggerHilt.DAGGER_HILT_COMPILER)
+    kapt(DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
 
     // Retrofit
     implementation(Retrofit.RETROFIT)
@@ -65,18 +56,4 @@ dependencies {
     //okHttp
     implementation(OkHttp.OKHTTP)
     implementation(OkHttp.LOGGING_INTERCEPTOR)
-
-    //Glide
-    implementation(Glide.GLIDE)
-    annotationProcessor(Glide.GLIDE_ANNOTATION)
-
-    //Gson
-    implementation(Gson.GSON)
-
-
-    // dager hilt
-    implementation (DaggerHilt.DAGGER_HILT)
-    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
-    kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
-
 }

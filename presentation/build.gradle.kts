@@ -43,9 +43,27 @@ android {
 
 dependencies {
     //androidx
-    implementation (project (":domain"))
-    implementation (KTX.CORE)
-    implementation (AndroidX.APP_COMPAT)
+    implementation(KTX.CORE)
+    implementation(AndroidX.APP_COMPAT)
+    implementation(AndroidX.MATERIAL)
+    implementation(AndroidX.CONSTRAINT_LAYOUT)
+    implementation(AndroidX.RECYCLERVIEW)
+
+    //Test
+    testImplementation (TestTool.JUNIT)
+    androidTestImplementation (TestTool.ANDROID_X_JUNIT)
+    androidTestImplementation (TestTool.ANDROID_X_ESPRESSO)
+    
+    //nav component
+    implementation(NavComponent.NAVIGATION_FRAGMENT)
+    implementation(NavComponent.NAVIGATION_UI)
+    implementation(NavComponent.NAVIGATION_DYNAMIC_FEATURES_FRAGMENT)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.room:room-ktx:2.6.1")
+    androidTestImplementation(NavComponent.NAVIGATION_TESTING)
+    implementation(NavComponent.NAVIGATION_COMPOSE)
 
     // ViewModel
     implementation(AndroidX.LIFECYCLE_VIEW_MODEL)
@@ -69,7 +87,7 @@ dependencies {
     //Glide
     implementation(Glide.GLIDE)
     annotationProcessor(Glide.GLIDE_ANNOTATION)
-
+    
     //Gson
     implementation(Gson.GSON)
 

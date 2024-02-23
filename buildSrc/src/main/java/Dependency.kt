@@ -58,3 +58,9 @@ object DaggerHilt {
     const val DAGGER_HILT_ANDROIDX_COMPILER = "androidx.hilt:hilt-compiler:1.0.0"
     const val DAGGER_HILT_JAVAX = "javax.inject:javax.inject:1"
 }
+
+object TestTool {
+    const val JUNIT = "junit:junit:4.+"
+    const val ANDROID_X_JUNIT = "androidx.test.ext:junit:1.1.3"
+    const val ANDROID_X_ESPRESSO = "androidx.test.espresso:espresso-core:3.4.0"
+}
