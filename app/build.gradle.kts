@@ -1,10 +1,13 @@
 import SdkVersions.compileSdk
 import SdkVersions.minSdk
 import SdkVersions.targetSdk
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -88,4 +91,11 @@ dependencies {
     
     //Gson
     implementation(Gson.GSON)
+
+
+    // dager hilt
+    implementation (DaggerHilt.DAGGER_HILT)
+    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
+
 }

@@ -46,7 +46,7 @@
             android:name=".view.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.auth.login.LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".view.SplashActivity"
