@@ -1,21 +1,16 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.carrot.carrotdiary"
+    namespace = "com.carrot.presentation"
     compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
-        applicationId = "com.carrot.carrotdiary"
         minSdk = SdkVersions.minSdk
-        targetSdk = SdkVersions.targetSdk
-        versionCode = AppVersions.androidVersionCode
-        versionName = AppVersions.androidVersionName
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

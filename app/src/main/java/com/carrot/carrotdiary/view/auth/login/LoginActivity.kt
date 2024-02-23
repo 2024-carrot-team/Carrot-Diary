@@ -1,12 +1,22 @@
+<<<<<<<< HEAD:app/src/main/java/com/carrot/carrotdiary/view/auth/login/LoginActivity.kt
 package com.carrot.carrotdiary.view.auth.login
+========
+package com.carrot.presentation.view
+>>>>>>>> origin/feature/android-dev:presentation/src/main/java/com/carrot/presentation/view/LoginActivity.kt
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+<<<<<<<< HEAD:app/src/main/java/com/carrot/carrotdiary/view/auth/login/LoginActivity.kt
 import com.carrot.carrotdiary.databinding.ActivityLoginBinding
 import com.carrot.carrotdiary.view.auth.signup.SignUpActivity
 import com.carrot.carrotdiary.view.main.MainActivity
+========
+import com.carrot.presentation.view.main.MainActivity
+import com.carrot.presentation.view.main.signup.SignUpActivity
+import com.carrot.presentation.databinding.ActivityLoginBinding
+>>>>>>>> origin/feature/android-dev:presentation/src/main/java/com/carrot/presentation/view/LoginActivity.kt
 
 
 class LoginActivity : AppCompatActivity() {
