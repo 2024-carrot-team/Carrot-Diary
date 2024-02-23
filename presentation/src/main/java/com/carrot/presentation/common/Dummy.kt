@@ -10,14 +10,12 @@ import java.util.Locale
 
 class Dummy {
     companion object {
-        val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN)
-        val localDate: Date = dateFormat.parse("2023-02-10")
         val userInfo: User = User(
             id = "ksd5715",
             email = "rltjdeh@naver.com",
             password = "12312",
             nickname = "바니바니",
-            birthDate = localDate,
+            birthDate = "123",
             profile = "https://source.unsplash.com/random"
         )
         val accidentImageList: List<String> = arrayListOf<String>(
@@ -42,11 +40,11 @@ class Dummy {
         )
         val dailyList: List<Daily> = arrayListOf<Daily>(
             Daily(
-                id = 0, date = localDate, likes = 1, accidents = accidentList
+                id = 0, date = "123", likes = 1, accidents = accidentList
             ), Daily(
-                id = 0, date = localDate, likes = 1, accidents = accidentList
+                id = 0, date = "123", likes = 1, accidents = accidentList
             ), Daily(
-                id = 0, date = localDate, likes = 1, accidents = accidentList
+                id = 0, date = "123", likes = 1, accidents = accidentList
             )
         )
         val diaryList: List<Diary> = arrayListOf<Diary>(

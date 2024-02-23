@@ -61,7 +61,7 @@ class WriteDailyViewModel : ViewModel() {
     fun addDaily() {
         val daily = Daily(
             id = 0,
-            date = Date(),
+            date = "hj",
             likes = 0,
             accidents = _accidentList.value,
         )

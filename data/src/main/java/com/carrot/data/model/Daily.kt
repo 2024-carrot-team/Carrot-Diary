@@ -1,4 +1,4 @@
-package com.carrot.presentation.model
+package com.carrot.data.model
 
 
 import java.util.Date

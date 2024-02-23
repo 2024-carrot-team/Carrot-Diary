@@ -36,7 +36,6 @@ android {
 
 dependencies {
     //androidx
-    implementation (project (":domain"))
     implementation (KTX.CORE)
     implementation (AndroidX.APP_COMPAT)
 
@@ -61,7 +60,6 @@ dependencies {
 
     //Glide
     implementation(Glide.GLIDE)
-    implementation(project(mapOf("path" to ":presentation")))
     annotationProcessor(Glide.GLIDE_ANNOTATION)
 
     //Gson

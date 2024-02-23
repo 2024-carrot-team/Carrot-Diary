@@ -7,6 +7,6 @@ data class User(
     val email: String,
     val password: String,
     val nickname: String,
-    val birthDate: Date,
-    val profile: String,
+    val birthDate: String,
+    val profile: String?,
 )
