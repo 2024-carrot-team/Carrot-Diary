@@ -18,3 +18,4 @@ rootProject.name = "carrotdiary"
 include(":presentation")
 include(":data")
 include(":domain")
+include(":core")
