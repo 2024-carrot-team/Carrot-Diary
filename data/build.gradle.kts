@@ -1,20 +1,16 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.carrot.carrotdiary"
+    namespace = "com.carrot.data"
     compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
-        applicationId = "com.carrot.carrotdiary"
         minSdk = SdkVersions.minSdk
-        targetSdk = SdkVersions.targetSdk
-        versionCode = AppVersions.androidVersionCode
-        versionName = AppVersions.androidVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,9 +32,6 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -68,6 +61,7 @@ dependencies {
 
     //Glide
     implementation(Glide.GLIDE)
+    implementation(project(mapOf("path" to ":presentation")))
     annotationProcessor(Glide.GLIDE_ANNOTATION)
 
     //Gson
