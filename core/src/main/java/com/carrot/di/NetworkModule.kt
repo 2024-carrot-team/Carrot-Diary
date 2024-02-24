@@ -2,6 +2,8 @@ package com.carrot.di
 
 import com.carrot.data.remote.api.LoginApiService
 import com.carrot.utils.Utils.BASE_URL
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,9 +33,18 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .setLenient()
+            .create()
+    }
+
+    @Provides
+    @Singleton
     //gson 의존성 주입 (아래 retrofit 의존성 주입에 사용)
-    fun provideConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
+    fun provideConverterFactory(gson :Gson
+    ): GsonConverterFactory {
+        return GsonConverterFactory.create(gson)
     }
 
     @Singleton
