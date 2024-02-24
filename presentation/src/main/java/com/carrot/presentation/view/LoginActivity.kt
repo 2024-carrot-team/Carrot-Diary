@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
             val birth = binding.editTextBirthDateLogin.text.toString()
 
             val t = PostUser(
-                email = "user12@naver.com",
+                email = email,
                 password = "Password1!",
                 nickname = "himaydu",
                 birthDayTime = "1990-01-01T00:00:00",
