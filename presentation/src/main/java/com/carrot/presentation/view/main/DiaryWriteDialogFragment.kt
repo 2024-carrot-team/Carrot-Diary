@@ -13,7 +13,9 @@ import com.carrot.presentation.view.main.makediary.DiaryTitleListAdapter
 import com.carrot.presentation.view.main.makediary.MakeDiaryActivity
 import com.carrot.presentation.view.main.makediary.MakeDiaryViewModel
 import com.carrot.presentation.view.main.writedaily.WriteDailyActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DiaryWriteDialogFragment : DialogFragment() {
     private var _binding: FragmentDiaryWriteDialogBinding? = null
     private val binding

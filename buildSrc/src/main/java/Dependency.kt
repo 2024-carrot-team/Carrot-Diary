@@ -8,6 +8,7 @@ object Retrofit {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:2.9.0"
     const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:2.9.0"
     const val CONVERTER_JAXB = "com.squareup.retrofit2:converter-jaxb:2.9.0"
+    const val CONVERTER_SCALARS = "com.squareup.retrofit2:converter-scalars:2.9.0"
 }
 
 object Glide {

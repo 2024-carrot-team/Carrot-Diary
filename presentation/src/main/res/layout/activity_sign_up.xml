@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.signup.SignUpActivity">
+    tools:context=".view.auth.signup.SignUpActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_loginGuideline_signUpActivity"
@@ -35,6 +35,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editText_loginId_signUpActivity" />
 
+    <EditText
+        android:id="@+id/editText_nickName_signUpActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:hint="닉네임"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_password_signUpActivity" />
+
+    <EditText
+        android:id="@+id/editText_birthDate_signUpActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:hint="yyyy-mm-dd"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_nickName_signUpActivity" />
+
     <Button
         android:id="@+id/button_signUp_signUpActivity"
         android:layout_width="match_parent"
@@ -46,6 +68,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_password_signUpActivity" />
+        app:layout_constraintTop_toBottomOf="@id/editText_birthDate_signUpActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -39,24 +40,37 @@ object NetworkModule {
             .create()
     }
 
+
     @Provides
     @Singleton
     //gson 의존성 주입 (아래 retrofit 의존성 주입에 사용)
-    fun provideConverterFactory(gson :Gson
+    fun provideConverterFactory(
+        gson: Gson
     ): GsonConverterFactory {
         return GsonConverterFactory.create(gson)
     }
+
+    @Provides
+    @Singleton
+    //gson 의존성 주입 (아래 retrofit 의존성 주입에 사용)
+    fun provideScalarsConverterFactory(
+    ): ScalarsConverterFactory {
+        return ScalarsConverterFactory.create()
+    }
+
 
     @Singleton
     @Provides
     //retrofit 의존성 주입 (아래 LoveCalculatorApi 의존성 주입에 사용)
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+        scalarsConverterFactory: ScalarsConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
+            .addConverterFactory(scalarsConverterFactory)
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
@@ -71,5 +85,4 @@ object NetworkModule {
     fun provideApiService(retrofit: Retrofit): LoginApiService {
         return retrofit.create(LoginApiService::class.java)
     }
-
 }

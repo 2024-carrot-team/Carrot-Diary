@@ -15,10 +15,12 @@ import com.carrot.presentation.databinding.ActivityWriteDailyBinding
 import com.carrot.presentation.databinding.DialogAccidentMakeBinding
 import com.carrot.presentation.view.main.dailylist.DailyListActivity
 import com.carrot.presentation.view.main.makediary.AccidentImageListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+@AndroidEntryPoint
 class WriteDailyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWriteDailyBinding
     private lateinit var dialogBinding: DialogAccidentMakeBinding
@@ -30,6 +32,7 @@ class WriteDailyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel.setCookie()
         viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
         binding.buttonMakeNewAccidentWriteDailyActivity.setOnClickListener { writeAccident() }
         binding.recyclerViewAccidentListWriteDailyActivity.adapter = accidentListAdapter

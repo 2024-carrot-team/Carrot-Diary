@@ -76,6 +76,7 @@ dependencies {
     implementation(Retrofit.RETROFIT)
     implementation(Retrofit.CONVERTER_GSON)
     implementation(Retrofit.CONVERTER_JAXB)
+    implementation(Retrofit.CONVERTER_SCALARS)
 
     //okHttp
     implementation(OkHttp.OKHTTP)

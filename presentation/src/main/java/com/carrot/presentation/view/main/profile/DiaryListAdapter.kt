@@ -22,15 +22,15 @@ class DiaryListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.diaryTitle.text = viewModel.diaryList.value!![position].title
-        Glide.with(holder.itemView).load(Uri.parse(viewModel.diaryList.value!![position].cover))
+        holder.diaryTitle.text = viewModel.diaryList.value[position].title
+        Glide.with(holder.itemView).load(Uri.parse(viewModel.diaryList.value[position].cover))
             .into(holder.thumbnailImage)
 //        holder.thumbnailImage.setImageURI(Uri.parse(items[position].cover))
 //        holder.thumbnailImage
     }
 
     override fun getItemCount(): Int {
-        return viewModel.diaryList.value!!.size
+        return viewModel.diaryList.value.size
     }
 
     class ViewHolder(binding: ItemThumbnailDiaryBinding) : RecyclerView.ViewHolder(binding.root) {

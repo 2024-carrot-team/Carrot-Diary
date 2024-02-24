@@ -5,23 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentProfileBinding
 import com.carrot.presentation.model.Diary
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-class ProfileFragment : Fragment() {
+@AndroidEntryPoint
+class ProfileFragment: Fragment() {
 
     private val fragmentTitleList = mutableListOf("나의 일기장", "팔로워")
 
     private var _binding: FragmentProfileBinding? = null
-    private val viewModel: ProfileViewModel by viewModels()
+//    private val viewModel: ProfileViewModel by viewModels()
+
+    private val viewModel: ProfileViewModel by activityViewModels()
     private val binding
         get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val list = mutableListOf<Diary>()
+
     }
 
     override fun onCreateView(

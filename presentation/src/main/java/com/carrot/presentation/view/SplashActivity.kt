@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.carrot.presentation.R
+import com.carrot.presentation.view.auth.login.LoginActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

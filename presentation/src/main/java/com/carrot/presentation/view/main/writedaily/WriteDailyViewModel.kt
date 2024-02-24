@@ -1,17 +1,24 @@
 package com.carrot.presentation.view.main.writedaily
 
 import androidx.lifecycle.ViewModel
+import com.carrot.data.local.SharedPreferencesService
+import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
 import com.carrot.presentation.model.Accident
 import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.Diary
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-class WriteDailyViewModel : ViewModel() {
+@HiltViewModel
+class WriteDailyViewModel @Inject constructor(
+    private val sharedPreferencesService: SharedPreferencesService
+) : ViewModel() {
 
 
     private val dateTimeFormatter = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
@@ -32,12 +39,18 @@ class WriteDailyViewModel : ViewModel() {
 
     private val accidentId = _accidentId.asStateFlow()
 
+    private val token = sharedPreferencesService.cookie
+
     init {
 //        _date.value = "${dateTimeFormatter.format(Date())}의 일기"
     }
 
     fun loadDiaryId(id: Int) {
         _diary.value = Dummy.diaryList[id]
+    }
+
+    fun setCookie() {
+        println("뷰모델에 쿠키 도착 $token")
     }
 
     fun addImage(uri: String) {

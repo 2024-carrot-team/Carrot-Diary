@@ -19,7 +19,7 @@
 
     <application>
         <activity
-            android:name=".view.main.signup.SignUpActivity"
+            android:name=".view.auth.signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.dailylist.DailyListActivity"
@@ -37,7 +37,7 @@
             android:name=".view.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.auth.login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".view.SplashActivity"

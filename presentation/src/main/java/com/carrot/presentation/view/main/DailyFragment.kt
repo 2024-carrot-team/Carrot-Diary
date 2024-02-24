@@ -13,9 +13,6 @@ class DailyFragment : Fragment() {
     private val fragmentTitleList = mutableListOf("추천", "팔로워")
 
     private lateinit var binding: FragmentDiaryBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
