@@ -2,6 +2,7 @@ package com.carrot.data.remote.api
 
 import com.carrot.data.model.LoginRequest
 import com.carrot.data.model.PostUser
+import com.carrot.data.model.TitleRequest
 import com.carrot.data.model.WriteDiary
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -23,10 +24,12 @@ interface LoginApiService {
     suspend fun postLogin(@Body loginRequest: LoginRequest): Response<String>
 
 
-    //    @GET("post")
-//    suspend fun getDiary(@Header("Cookie") cookie: String): Response<Any>
+    //        @GET("post")
+//    suspend fun getDiary(): Response<Any>
     @GET("post")
-    suspend fun getDiary(): Response<Any>
+    suspend fun getDiary(
+        @Header("Cookie") authorization: String,
+    ): Response<Any>
 
 //    @POST("post")
 //    suspend fun postDiary(@Body writeDiary: WriteDiary): Response<Any>
@@ -34,7 +37,8 @@ interface LoginApiService {
     @Multipart
     @POST("post")
     suspend fun postDiary(
-        @Part title: MultipartBody.Part,
+        @Header("Cookie") authorization: String,
+        @Part("title") title: RequestBody,
         @Part image: MultipartBody.Part
     ): Response<Any>
 }

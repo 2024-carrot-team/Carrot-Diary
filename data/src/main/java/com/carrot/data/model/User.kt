@@ -27,6 +27,10 @@ data class LoginRequest(
     val password: String
 )
 
+data class TitleRequest(
+    val title: String
+)
+
 data class WriteDiary(
     val title: String,
     val image: File

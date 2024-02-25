@@ -30,7 +30,7 @@ class SignUpViewModel @Inject constructor(
                     email = email,
                     password = password,
                     nickname = nickname,
-                    birthDayTime = getNowTime(),
+                    birthDayTime = "1990-01-01T00:00:00",
                     role = "USER"
                 )
             )

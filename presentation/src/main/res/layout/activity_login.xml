@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/input_box"
-        android:src="@drawable/splash"
+        android:src="@drawable/heart"
         app:layout_constraintBottom_toTopOf="@+id/guideline_loginGuideline_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

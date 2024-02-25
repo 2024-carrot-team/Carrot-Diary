@@ -1,12 +1,16 @@
 package com.carrot.presentation.view.main.makediary
 
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carrot.data.local.SharedPreferencesService
+import com.carrot.data.model.TitleRequest
 import com.carrot.data.model.WriteDiary
 import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
@@ -16,11 +20,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okio.BufferedSink
+import org.json.JSONObject
 import java.io.File
 import javax.inject.Inject
 
@@ -45,27 +53,62 @@ class MakeDiaryViewModel @Inject constructor(
         _diaryList.value = Dummy.diaryList
     }
 
-    fun makeDiary(title: String, file: File) {
-//        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+    fun test(title: String) {
 
-        val diaryTitle = MultipartBodyUtil.getBody("title", title)
-        val imageFile = MultipartBodyUtil.getImageBody("image", file)
-        println("파일 $file")
-//        val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
-//        val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-//        val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
+    }
+
+    fun makeDiary(title: String, bitmap: Bitmap) {
+        val imageRequestBody = BitmapRequestBody(bitmap)
+        val imageMultipartBody: MultipartBody.Part =
+            MultipartBody.Part.createFormData(
+                "image",
+                "and" + System.currentTimeMillis(),
+                imageRequestBody
+            )
+//        val file = File(filePath)
+        val diaryTitle = title.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+//
+//        // 실제 요청 생성
+//        val requestFile = MultipartBody.Part.createFormData("image", file.name, requestBody)
+//        val requestTitle = MultipartBody.Part.createFormData("title", "", diaryTitle)
+//        println("파일 ${file.exists()} $filePath")
         viewModelScope.launch {
             try {
                 val result = loginApiService.postDiary(
-                    diaryTitle, imageFile
+                    authorization = sharedPreferencesService.cookie ?: "",
+                    diaryTitle,
+                    imageMultipartBody
                 )
-                println(result)
+                println("결과1 $result")
             } catch (e: Exception) {
-                println(e)
+                println("에러 $e")
             }
         }
     }
+
+    companion object {
+        class BitmapRequestBody(private val bitmap: Bitmap) : RequestBody() {
+            override fun contentType(): MediaType? {
+                return "image/png".toMediaTypeOrNull()
+            }
+
+            override fun writeTo(sink: BufferedSink) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 99, sink.outputStream()) //99프로 압축
+            }
+        }
+    }
+//        viewModelScope.launch {
+//            try {
+//                val result = loginApiService.postDiary(
+//                    title, requestFile
+//                )
+//                println("결과2 $result")
+//            } catch (e: Exception) {
+//                println("에러 $e")
+//            }
+//        }
+//    }
 
 
     fun setUri(uri: Uri) {
