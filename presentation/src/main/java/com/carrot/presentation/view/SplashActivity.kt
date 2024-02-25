@@ -13,6 +13,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        val action = supportActionBar
+        action?.hide()
         val intent = Intent(this, LoginActivity::class.java)
         lifecycleScope.launch {
             delay(1000)

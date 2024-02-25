@@ -5,7 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.main.profile.ProfileFragment">
+
+    <ImageButton
+        android:id="@+id/button_setting_profileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/ImageView_profile_profileFragment"
@@ -22,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="유저 아이디"
+        android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="@id/ImageView_profile_profileFragment"
         app:layout_constraintTop_toBottomOf="@id/ImageView_profile_profileFragment" />
 
@@ -30,7 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="간단한 자기소개 멘트"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toStartOf="@id/button_setting_profileFragment"
         app:layout_constraintTop_toTopOf="@id/ImageView_profile_profileFragment" />
 
     <TextView
@@ -39,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="팔로잉 \n 0명"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TextView_userMention_profileFragment" />
 
@@ -47,6 +63,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="팔로위 \n 0명"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toStartOf="@id/TextView_following_profileFragment"
         app:layout_constraintTop_toTopOf="@id/TextView_following_profileFragment" />
 
@@ -55,6 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="일기장 \n 10개"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toStartOf="@id/TextView_follower_profileFragment"
         app:layout_constraintTop_toTopOf="@id/TextView_following_profileFragment" />
 

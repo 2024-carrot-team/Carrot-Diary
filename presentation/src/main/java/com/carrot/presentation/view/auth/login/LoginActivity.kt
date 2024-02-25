@@ -27,8 +27,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
 
-    //    @Inject
-//    lateinit var api: LoginApiService
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -38,6 +37,10 @@ class LoginActivity : AppCompatActivity() {
         editor = sharedPreferences.edit()
         initLiveData()
 
+        val action = supportActionBar
+        action?.hide()
+
+
         binding.buttonLoginLogin.setOnClickListener {
             val email = binding.editTextLoginIdLogin.text.toString()
             val pass = binding.editTextPasswordLogin.text.toString()
@@ -45,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 email, pass
             )
         }
-        binding.buttonSignUpLogin.setOnClickListener {
+        binding.textSignUpLogin.setOnClickListener {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
             finish()

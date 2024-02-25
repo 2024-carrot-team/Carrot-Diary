@@ -1,13 +1,11 @@
 package com.carrot.presentation.view.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.carrot.presentation.R
 import com.carrot.presentation.databinding.ActivityMainBinding
-import com.carrot.presentation.view.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,10 +24,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host)?.findNavController()
         navController?.let {
             bottomNavigationView.setupWithNavController(it)
-        }
-        binding.buttonSettingMain.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
         }
         val action = supportActionBar
         action?.hide()

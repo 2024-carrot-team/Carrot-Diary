@@ -1,5 +1,6 @@
 package com.carrot.presentation.view.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentProfileBinding
 import com.carrot.presentation.model.Diary
+import com.carrot.presentation.view.SettingActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +37,12 @@ class ProfileFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        binding.buttonSettingProfileFragment.setOnClickListener {
+            val intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 
