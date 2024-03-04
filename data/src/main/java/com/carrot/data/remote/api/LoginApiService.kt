@@ -1,5 +1,6 @@
 package com.carrot.data.remote.api
 
+import com.carrot.data.model.DiaryListDTO
 import com.carrot.data.model.LoginRequest
 import com.carrot.data.model.PostUser
 import com.carrot.data.model.TitleRequest
@@ -29,7 +30,7 @@ interface LoginApiService {
     @GET("post")
     suspend fun getDiary(
         @Header("Cookie") authorization: String,
-    ): Response<Any>
+    ): Response<DiaryListDTO>
 
 //    @POST("post")
 //    suspend fun postDiary(@Body writeDiary: WriteDiary): Response<Any>

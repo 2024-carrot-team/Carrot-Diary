@@ -26,11 +26,12 @@ class LoginViewModel @Inject constructor(
             val result = api.postLogin(
                 LoginRequest(id, password)
             )
-
             if (result.isSuccessful) {
-                _isLogin.value = 1
                 sharedPreferencesService.cookie =
                     result.headers().values("Set-Cookie")[0]
+
+                _isLogin.value = 1
+
                 println("로그인 뷰모델 쿠키 값 size ${result.headers().values("Set-Cookie").size}")
                 println("로그인 뷰모델 쿠키 값 전체 ${result.headers().values("Set-Cookie")[0]}")
                 println("로그인 뷰모델 쿠키 값 전체 ${result.headers().values("Set-Cookie")}")

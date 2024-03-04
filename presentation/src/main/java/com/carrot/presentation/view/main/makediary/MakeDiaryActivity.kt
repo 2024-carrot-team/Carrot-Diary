@@ -14,10 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.carrot.presentation.databinding.ActivityMakeDiaryBinding
+import com.carrot.presentation.view.main.MainActivity
 import com.carrot.presentation.view.main.writedaily.WriteDailyActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -55,12 +58,18 @@ class MakeDiaryActivity : AppCompatActivity() {
                     getBitmapFromUri(uri)
                 )
             }
-//            val uri = viewModel.selectedUri.value
-//            if (uri != null) {
-//                viewModel.makeDiary(binding.editTextDiaryTitle.text.toString(), uriToFile(uri))
-//            }
-//            val intent = Intent(this, WriteDailyActivity::class.java)
-//            startActivity(intent)
+        }
+        responseCodeListener()
+    }
+
+    private fun responseCodeListener() {
+        lifecycleScope.launch {
+            viewModel.responseCode.collect { resultCode ->
+                if (resultCode == 201 || resultCode == 200) {
+                    val intent = Intent(this@MakeDiaryActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
     }
 
@@ -81,65 +90,6 @@ class MakeDiaryActivity : AppCompatActivity() {
                     Glide.with(this).load(imageUri).into(binding.imageIvMakeNewDiary)
                 }
 
-//                if (imageUri != null) {
-//                    viewModel.setUri(imageUri)
-//                    Glide.with(this).load(imageUri).into(binding.imageIvMakeNewDiary)
-//                }
             }
         }
-
-
-    private fun uriToFilePath(uri: Uri): String? {
-        var filePath: String? = null
-        if ("content".equals(uri.scheme, ignoreCase = true)) {
-            val projection = arrayOf(MediaStore.Images.Media.DATA)
-            val cursor = this.contentResolver.query(uri, projection, null, null, null)
-            cursor?.use {
-                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                it.moveToFirst()
-                filePath = it.getString(columnIndex)
-            }
-        } else if ("file".equals(uri.scheme, ignoreCase = true)) {
-            filePath = uri.path
-        }
-        return filePath
-    }
-
-    // 절대경로 변환
-    fun absolutelyPath(path: Uri): String {
-
-        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor = contentResolver.query(path, proj, null, null, null)!!
-        var index = c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c.moveToFirst()
-
-        var result = c.getString(index)
-
-        return result
-    }
-
-    fun uriToFile(uri: Uri): File? {
-        val contentResolver: ContentResolver = this.contentResolver
-        val filePath = this.cacheDir // Or you can choose your own directory
-        val file = File(filePath, "${System.currentTimeMillis()}") // Temporary file name
-
-        try {
-            val inputStream = contentResolver.openInputStream(uri)
-            inputStream?.use { input ->
-                val outputStream = FileOutputStream(file)
-                outputStream.use { output ->
-                    val buffer = ByteArray(4 * 1024) // buffer size
-                    var read: Int
-                    while (input.read(buffer).also { read = it } != -1) {
-                        output.write(buffer, 0, read)
-                    }
-                    output.flush()
-                }
-            }
-            return file
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
-    }
 }

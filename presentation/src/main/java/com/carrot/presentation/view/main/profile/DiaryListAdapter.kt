@@ -3,38 +3,55 @@ package com.carrot.presentation.view.main.profile
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.carrot.presentation.R
 import com.carrot.presentation.databinding.ItemThumbnailDiaryBinding
+import com.carrot.presentation.model.Diary
+import com.carrot.presentation.model.DiaryHeader
 
 
-class DiaryListAdapter(
-    private val viewModel: ProfileViewModel
-) :
-    RecyclerView.Adapter<DiaryListAdapter.ViewHolder>() {
+class DiaryListAdapter() : ListAdapter<DiaryHeader, DiaryListAdapter.ViewHolder>(
+    object : DiffUtil.ItemCallback<DiaryHeader>() {
+        override fun areItemsTheSame(
+            oldItem: DiaryHeader,
+            newItem: DiaryHeader
+        ): Boolean {
+            return oldItem.postId == newItem.postId
+        }
 
-
+        override fun areContentsTheSame(
+            oldItem: DiaryHeader,
+            newItem: DiaryHeader
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryListAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_thumbnail_diary, parent, false)
-        return ViewHolder(ItemThumbnailDiaryBinding.bind(view))
+        val binding =
+            ItemThumbnailDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
+    //
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.diaryTitle.text = viewModel.diaryList.value[position].title
-        Glide.with(holder.itemView).load(Uri.parse(viewModel.diaryList.value[position].cover))
-            .into(holder.thumbnailImage)
-//        holder.thumbnailImage.setImageURI(Uri.parse(items[position].cover))
-//        holder.thumbnailImage
+        holder.bind(
+            item = getItem(position)
+        )
     }
 
-    override fun getItemCount(): Int {
-        return viewModel.diaryList.value.size
+    class ViewHolder(
+        private val binding: ItemThumbnailDiaryBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: DiaryHeader) {
+            Glide.with(binding.root).load(Uri.parse(item.imageUrl))
+                .into(binding.imageViewThumbnailItemThumbnailDiary)
+            binding.textViewContentItemThumbnailDiary.text = item.title
+        }
     }
 
-    class ViewHolder(binding: ItemThumbnailDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
-        val thumbnailImage = binding.imageViewThumbnailItemThumbnailDiary
-        val diaryTitle = binding.textViewContentItemThumbnailDiary
-    }
+
 }

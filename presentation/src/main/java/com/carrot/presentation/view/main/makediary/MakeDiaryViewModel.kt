@@ -45,6 +45,10 @@ class MakeDiaryViewModel @Inject constructor(
 
     val selectedFile = MutableStateFlow<File?>(null)
 
+    val _responseCode = MutableStateFlow<Int>(0)
+
+    val responseCode = _responseCode.asStateFlow()
+
     init {
         dummyDiary()
     }
@@ -80,7 +84,7 @@ class MakeDiaryViewModel @Inject constructor(
                     diaryTitle,
                     imageMultipartBody
                 )
-                println("결과1 $result")
+                _responseCode.value = result.code()
             } catch (e: Exception) {
                 println("에러 $e")
             }
@@ -98,26 +102,10 @@ class MakeDiaryViewModel @Inject constructor(
             }
         }
     }
-//        viewModelScope.launch {
-//            try {
-//                val result = loginApiService.postDiary(
-//                    title, requestFile
-//                )
-//                println("결과2 $result")
-//            } catch (e: Exception) {
-//                println("에러 $e")
-//            }
-//        }
-//    }
-
 
     fun setUri(uri: Uri) {
         _selectedUri.value = uri
     }
 
-
-//    fun setFile(file: File) {
-//        selectedFile.value = file
-//    }
 
 }
