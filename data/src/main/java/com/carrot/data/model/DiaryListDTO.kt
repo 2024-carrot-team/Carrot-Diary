@@ -11,11 +11,4 @@ data class DiaryListDTO(
         @SerializedName("title") val title: String,
         @SerializedName("imageUrl") val imageUrl: String
     )
-
-//    data class Daily(
-//        @SerializedName("id") val id: Int,
-//        @SerializedName("date") val date: String?,
-//        @SerializedName("likes") val likes: Int,
-//        @SerializedName("accidents") val accidents: List<Accident>,
-//    )
 }

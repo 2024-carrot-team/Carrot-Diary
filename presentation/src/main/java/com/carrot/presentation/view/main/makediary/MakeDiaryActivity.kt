@@ -4,6 +4,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -77,8 +78,22 @@ class MakeDiaryActivity : AppCompatActivity() {
         val source = ImageDecoder.createSource(application.contentResolver, uri)
         ImageDecoder.decodeBitmap(source)
     } else {
-        MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
+//        MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
+        val bitmap = MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
+        Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
     }
+
+    private fun resizedImage(uri: Uri) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            val source = ImageDecoder.createSource(application.contentResolver, uri)
+            ImageDecoder.decodeBitmap(source)
+        } else {
+            val bitmap = MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
+            val resizedBitmap =
+                Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+        }
+    }
+
 
     private val activityResult: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -89,7 +104,7 @@ class MakeDiaryActivity : AppCompatActivity() {
                     viewModel.setUri(imageUri)
                     Glide.with(this).load(imageUri).into(binding.imageIvMakeNewDiary)
                 }
-
             }
         }
 }
+
