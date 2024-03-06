@@ -1,10 +1,10 @@
-package com.carrot.presentation.view.main
+package com.carrot.presentation.view.main.daily
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-
+// 뷰페이저 어뎁터
 class DailyAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2

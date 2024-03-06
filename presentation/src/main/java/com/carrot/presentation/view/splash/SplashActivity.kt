@@ -1,4 +1,4 @@
-package com.carrot.presentation.view
+package com.carrot.presentation.view.splash
 
 import android.content.Intent
 import android.os.Bundle

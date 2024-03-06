@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardCornerRadius="5dp"
-    tools:context=".view.main.DiaryWriteDialogFragment">
+    tools:context=".view.main.makediary.DiaryWriteDialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"

@@ -16,6 +16,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface LoginApiService {
     @POST("members")
@@ -42,4 +43,12 @@ interface LoginApiService {
         @Part("title") title: RequestBody,
         @Part image: MultipartBody.Part
     ): Response<Any>
+
+
+    @GET("postDiary/{postDiary_id}") //24
+    suspend fun getMainPageDaily(
+        @Header("Cookie") authorization: String,
+        @Path("postDiary_id") postDiaryId: String,
+    ): Response<Any>
+
 }

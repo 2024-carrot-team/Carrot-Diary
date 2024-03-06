@@ -34,13 +34,13 @@
             android:name=".view.main.diary.DiaryDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SettingActivity"
+            android:name=".view.setting.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".view.auth.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,12 +6,12 @@
     app:startDestination="@id/nav_diaryFragment">
     <fragment
         android:id="@+id/nav_notifyFragment"
-        android:name="com.carrot.presentation.view.main.AlarmFragment"
+        android:name="com.carrot.presentation.view.main.alarm.AlarmFragment"
         android:label="fragment_alarm"
         tools:layout="@layout/fragment_alarm" />
     <fragment
         android:id="@+id/nav_diaryFragment"
-        android:name="com.carrot.presentation.view.main.DailyFragment"
+        android:name="com.carrot.presentation.view.main.daily.DailyFragment"
         android:label="fragment_diary"
         tools:layout="@layout/fragment_diary">
         <action
@@ -36,13 +36,13 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/nav_questionFragment"
-        android:name="com.carrot.presentation.view.main.QuestionFragment"
+        android:name="com.carrot.presentation.view.main.question.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" />
 
     <dialog
         android:id="@+id/nav_diaryWriteFragment"
-        android:name="com.carrot.presentation.view.main.DiaryWriteDialogFragment"
+        android:name="com.carrot.presentation.view.main.makediary.DiaryWriteDialogFragment"
         android:label="fragment_diary_write_dialog"
         tools:layout="@layout/fragment_diary_write_dialog" />
 

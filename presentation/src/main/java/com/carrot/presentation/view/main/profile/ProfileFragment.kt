@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentProfileBinding
-import com.carrot.presentation.view.SettingActivity
+import com.carrot.presentation.view.setting.SettingActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 

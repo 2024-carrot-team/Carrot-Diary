@@ -1,4 +1,4 @@
-package com.carrot.presentation.view.main
+package com.carrot.presentation.view.main.makediary
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentDiaryWriteDialogBinding
 import com.carrot.presentation.model.Diary
-import com.carrot.presentation.view.main.makediary.DiaryTitleListAdapter
-import com.carrot.presentation.view.main.makediary.MakeDiaryActivity
-import com.carrot.presentation.view.main.makediary.MakeDiaryViewModel
 import com.carrot.presentation.view.main.writedaily.WriteDailyActivity
 import dagger.hilt.android.AndroidEntryPoint
 

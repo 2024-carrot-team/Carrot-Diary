@@ -1,4 +1,4 @@
-package com.carrot.presentation.view.main
+package com.carrot.presentation.view.main.daily
 
 import android.content.Context
 import android.content.Intent

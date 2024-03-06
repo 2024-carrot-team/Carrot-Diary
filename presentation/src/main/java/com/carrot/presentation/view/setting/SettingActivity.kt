@@ -1,4 +1,4 @@
-package com.carrot.presentation.view
+package com.carrot.presentation.view.setting
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

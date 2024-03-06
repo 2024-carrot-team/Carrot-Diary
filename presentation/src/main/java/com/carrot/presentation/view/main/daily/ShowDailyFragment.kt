@@ -1,4 +1,4 @@
-package com.carrot.presentation.view.main
+package com.carrot.presentation.view.main.daily
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.carrot.presentation.databinding.FragmentShowDailyBinding
 import com.carrot.presentation.model.Daily
+import com.carrot.presentation.view.main.MainActivity
 
 
 class ShowDailyFragment : Fragment() {
