@@ -36,7 +36,7 @@
         android:drawableLeft="@drawable/baseline_email_24"
         android:hint=" 아이디"
         android:padding="10dp"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
         android:textColorHint="@color/gray"
         app:layout_constraintBottom_toTopOf="@id/editText_password_login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:hint=" 비밀번호"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,5 +137,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_alpha20"
+        android:text="Copyright by"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
     
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#0aadff</item>  <!-- 액션바(타이틀바)의 색상 결정-->
+    </style>
+
+
     <style name="tabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">13sp</item>
     </style>

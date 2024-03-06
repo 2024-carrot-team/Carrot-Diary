@@ -4,68 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.auth.signup.SignUpActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_loginGuideline_signUpActivity"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
 
     <EditText
         android:id="@+id/editText_loginId_signUpActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_margin="30dp"
-        android:hint="아이디"
+        android:background="@drawable/input_box"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:hint=" 아이디"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_alpha20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_loginGuideline_signUpActivity" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
         android:id="@+id/editText_password_signUpActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_margin="30dp"
-        android:hint="비밀번호"
+        android:background="@drawable/input_box"
+        android:drawableLeft="@drawable/baseline_vpn_key_24"
+        android:hint=" 비밀번호"
         android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_alpha20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editText_loginId_signUpActivity" />
 
     <EditText
-        android:id="@+id/editText_nickName_signUpActivity"
+        android:id="@+id/editText_passwordCheck_signUpActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:hint="닉네임"
-        android:inputType="text"
+        android:layout_height="54dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/input_box"
+        android:drawableLeft="@drawable/baseline_vpn_key_24"
+        android:hint=" 비밀번호 확인"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_alpha20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editText_password_signUpActivity" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8자 이상의 문자,숫자,특수문자의 조합으로 적어야 합니다. "
+        android:textColor="@color/main_orange"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/editText_passwordCheck_signUpActivity"
+        app:layout_constraintTop_toBottomOf="@id/editText_passwordCheck_signUpActivity" />
+
+    <EditText
+        android:id="@+id/editText_nickName_signUpActivity"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/input_box"
+        android:hint="닉네임"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_alpha20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_passwordCheck_signUpActivity" />
+
     <EditText
         android:id="@+id/editText_birthDate_signUpActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/input_box"
         android:hint="yyyy-mm-dd"
         android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_alpha20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editText_nickName_signUpActivity" />
 
-    <Button
-        android:id="@+id/button_signUp_signUpActivity"
+
+    <LinearLayout
+        android:id="@+id/text_terms_signUpActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button_signUp_signUpActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개인정보취급방침"
+            android:textColor="@color/blue"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 및 "
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이용약관"
+            android:textColor="@color/blue"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="을 읽고, 동의합니다. "
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <CheckBox
+            android:id="@+id/cb_terms_signUpActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white_gray"
+            android:backgroundTint="@color/white"
+            android:clickable="false" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_signUp_signUpActivity"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/accident_make_frame"
         android:text="회원가입"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editText_birthDate_signUpActivity" />
