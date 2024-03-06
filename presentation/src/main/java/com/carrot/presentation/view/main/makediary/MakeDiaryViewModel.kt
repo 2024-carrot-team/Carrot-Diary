@@ -20,6 +20,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -62,28 +64,30 @@ class MakeDiaryViewModel @Inject constructor(
     }
 
     fun makeDiary(title: String, bitmap: Bitmap) {
-        val imageRequestBody = BitmapRequestBody(bitmap)
-        val imageMultipartBody: MultipartBody.Part =
-            MultipartBody.Part.createFormData(
-                "image",
-                "and" + System.currentTimeMillis(),
-                imageRequestBody
-            )
+
+        viewModelScope.launch {
+            val imageRequestBody = BitmapRequestBody(bitmap)
+            val imageMultipartBody: MultipartBody.Part =
+                MultipartBody.Part.createFormData(
+                    "image",
+                    "and" + System.currentTimeMillis(),
+                    imageRequestBody
+                )
 //        val file = File(filePath)
-        val diaryTitle = title.toRequestBody("text/plain".toMediaTypeOrNull())
+            val diaryTitle = title.toRequestBody("text/plain".toMediaTypeOrNull())
 //        val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
 //
 //        // 실제 요청 생성
 //        val requestFile = MultipartBody.Part.createFormData("image", file.name, requestBody)
 //        val requestTitle = MultipartBody.Part.createFormData("title", "", diaryTitle)
-//        println("파일 ${file.exists()} $filePath")
-        viewModelScope.launch {
+            println("파일 $diaryTitle")
             try {
                 val result = loginApiService.postDiary(
                     authorization = sharedPreferencesService.cookie ?: "",
                     diaryTitle,
                     imageMultipartBody
                 )
+                println("결과 코드 ${result.code()}")
                 _responseCode.value = result.code()
             } catch (e: Exception) {
                 println("에러 $e")
@@ -94,11 +98,11 @@ class MakeDiaryViewModel @Inject constructor(
     companion object {
         class BitmapRequestBody(private val bitmap: Bitmap) : RequestBody() {
             override fun contentType(): MediaType? {
-                return "image/png".toMediaTypeOrNull()
+                return "image/JPEG".toMediaTypeOrNull()
             }
 
             override fun writeTo(sink: BufferedSink) {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 99, sink.outputStream()) //99프로 압축
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, sink.outputStream()) //99프로 압축
             }
         }
     }
