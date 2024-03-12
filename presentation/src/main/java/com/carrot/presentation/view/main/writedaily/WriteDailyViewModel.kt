@@ -1,15 +1,26 @@
 package com.carrot.presentation.view.main.writedaily
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.carrot.data.local.SharedPreferencesService
 import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
 import com.carrot.presentation.model.Accident
 import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.Diary
+import com.carrot.presentation.model.mapper.toView
+import com.carrot.presentation.view.main.makediary.MakeDiaryViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okio.BufferedSink
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -17,7 +28,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WriteDailyViewModel @Inject constructor(
-    private val sharedPreferencesService: SharedPreferencesService
+    private val sharedPreferencesService: SharedPreferencesService,
+    private val api: LoginApiService
 ) : ViewModel() {
 
 
@@ -41,12 +53,21 @@ class WriteDailyViewModel @Inject constructor(
 
     private val token = sharedPreferencesService.cookie
 
-    init {
-//        _date.value = "${dateTimeFormatter.format(Date())}의 일기"
-    }
+    private val _diaryId = MutableStateFlow<Int>(0)
+    val diaryId = _diaryId.asStateFlow()
+
+    private val _dailyId = MutableStateFlow<Int>(0)
+    val dailyId = _dailyId.asStateFlow()
+
+    //    val bitMapList = MutableStateFlow<List<Bitmap>>(emptyList())
+    val bitMapList = MutableStateFlow<List<MultipartBody.Part>>(emptyList())
 
     fun loadDiaryId(id: Int) {
-        _diary.value = Dummy.diaryList[id]
+//        _diary.value = Dummy.diaryList[id]
+    }
+
+    fun setDailyId(dailyId: Int) {
+        _dailyId.value = dailyId
     }
 
     fun setCookie() {
@@ -62,6 +83,14 @@ class WriteDailyViewModel @Inject constructor(
     }
 
     fun addAccident(content: String) {
+        viewModelScope.launch {
+            api.postDaily(
+                content = content.toRequestBody("text/plain".toMediaTypeOrNull()),
+                authorization = sharedPreferencesService.cookie ?: "",
+                images = bitMapList.value,
+                postDiaryId = _dailyId.value.toString()
+            )
+        }
         _accidentList.value = _accidentList.value + Accident(
             imageList = _imageList.value,
             id = _accidentId.value,
@@ -71,13 +100,34 @@ class WriteDailyViewModel @Inject constructor(
         _accidentId.value += 1
     }
 
-    fun addDaily() {
-        val daily = Daily(
-            id = 0,
-            date = "hj",
-            likes = 0,
-            accidents = _accidentList.value,
-        )
+    fun saveDaily() {
+
     }
 
+    fun makeMultiPartBodyList(bitmap: Bitmap) {
+        val imageRequestBody = BitmapRequestBody(bitmap)
+        bitMapList.value = bitMapList.value + MultipartBody.Part.createFormData(
+            "images",
+            "and" + System.currentTimeMillis(),
+            imageRequestBody
+        )
+//        val imageMultipartBody: MultipartBody.Part =
+//            MultipartBody.Part.createFormData(
+//                "image",
+//                "and" + System.currentTimeMillis(),
+//                imageRequestBody
+//            )
+    }
+
+    companion object {
+        class BitmapRequestBody(private val bitmap: Bitmap) : RequestBody() {
+            override fun contentType(): MediaType? {
+                return "image/JPEG".toMediaTypeOrNull()
+            }
+
+            override fun writeTo(sink: BufferedSink) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, sink.outputStream()) //99프로 압축
+            }
+        }
+    }
 }

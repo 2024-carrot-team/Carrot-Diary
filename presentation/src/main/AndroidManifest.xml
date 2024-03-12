@@ -22,7 +22,7 @@
             android:name=".view.auth.signup.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.dailylist.DailyListActivity"
+            android:name=".view.main.dailylist.DailyHeaderListActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.writedaily.WriteDailyActivity"

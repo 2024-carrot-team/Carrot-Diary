@@ -20,7 +20,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val viewModel: ProfileViewModel by viewModels()
 
-//    private val viewModel: ProfileViewModel by activityViewModels()
+    //    private val viewModel: ProfileViewModel by activityViewModels()
     private val binding
         get() = _binding!!
 

@@ -15,6 +15,8 @@ import com.carrot.data.model.WriteDiary
 import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
 import com.carrot.presentation.model.Diary
+import com.carrot.presentation.model.DiaryHeader
+import com.carrot.presentation.model.mapper.toView
 import com.carrot.presentation.util.MultipartBodyUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,8 +42,8 @@ class MakeDiaryViewModel @Inject constructor(
     private val loginApiService: LoginApiService
 ) : ViewModel() {
 
-    val _diaryList = MutableLiveData<List<Diary>>()
-    val diaryList: LiveData<List<Diary>> get() = _diaryList
+    private val _diaryList = MutableLiveData<List<DiaryHeader>>()
+    val diaryList: LiveData<List<DiaryHeader>> get() = _diaryList
     private val _selectedUri = MutableStateFlow<Uri?>(null)
     val selectedUri = _selectedUri.asStateFlow()
 
@@ -52,15 +54,21 @@ class MakeDiaryViewModel @Inject constructor(
     val responseCode = _responseCode.asStateFlow()
 
     init {
-        dummyDiary()
+        loadPostId()
     }
 
-    fun dummyDiary() {
-        _diaryList.value = Dummy.diaryList
-    }
-
-    fun test(title: String) {
-
+    fun loadPostId() {
+        viewModelScope.launch {
+            val result = loginApiService.getDiary(
+                authorization = sharedPreferencesService.cookie ?: ""
+            )
+            if (result.isSuccessful && result.code() == 200) {
+                result.body().let { diaryListDTO ->
+                    _diaryList.value = diaryListDTO!!.toView()
+                }
+            }
+        }
+//        _diaryList.value = Dummy.diaryList
     }
 
     fun makeDiary(title: String, bitmap: Bitmap) {
@@ -73,14 +81,7 @@ class MakeDiaryViewModel @Inject constructor(
                     "and" + System.currentTimeMillis(),
                     imageRequestBody
                 )
-//        val file = File(filePath)
             val diaryTitle = title.toRequestBody("text/plain".toMediaTypeOrNull())
-//        val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-//
-//        // 실제 요청 생성
-//        val requestFile = MultipartBody.Part.createFormData("image", file.name, requestBody)
-//        val requestTitle = MultipartBody.Part.createFormData("title", "", diaryTitle)
-            println("파일 $diaryTitle")
             try {
                 val result = loginApiService.postDiary(
                     authorization = sharedPreferencesService.cookie ?: "",

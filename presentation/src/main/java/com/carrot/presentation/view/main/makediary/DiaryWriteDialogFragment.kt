@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentDiaryWriteDialogBinding
-import com.carrot.presentation.model.Diary
-import com.carrot.presentation.view.main.writedaily.WriteDailyActivity
+import com.carrot.presentation.model.DiaryHeader
+import com.carrot.presentation.view.main.dailylist.DailyHeaderListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,9 +45,9 @@ class DiaryWriteDialogFragment : DialogFragment() {
 
     private fun initRecyclerView() {
         binding.recyclerViewDiaryListDiaryWriteDialog.adapter =
-            DiaryTitleListAdapter(viewModel, onItemClickListener = { diary: Diary ->
-                val intent = Intent(context, WriteDailyActivity::class.java)
-                intent.putExtra("diary", diary.id)
+            DiaryTitleListAdapter(viewModel, onItemClickListener = { diary: DiaryHeader ->
+                val intent = Intent(context, DailyHeaderListActivity::class.java)
+                intent.putExtra("diary", diary.postId)
                 startActivity(intent)
             })
     }
