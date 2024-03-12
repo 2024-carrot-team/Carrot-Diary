@@ -1,7 +1,6 @@
 package com.carrot.presentation.model
 
-
-import java.util.Date
+import java.io.File
 
 data class Daily(
     val id: Int,
@@ -9,3 +8,9 @@ data class Daily(
     val likes: Int,
     val accidents: List<Accident>,
 )
+
+
+data class DailyDTO(
+    val content: String?,
+    val image: File?,
+    )
