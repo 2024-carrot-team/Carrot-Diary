@@ -54,7 +54,8 @@ class DailyListViewModel @Inject constructor(
             )
             if (result.isSuccessful && result.code() == 200) {
                 result.body().let { dailyIdDTO ->
-                    _newDailyId.value = dailyIdDTO!!.toInt()
+                    _newDailyId.value = dailyIdDTO!!.postDiaryId.toInt()
+                    sharedPreferencesService.userId = dailyIdDTO.userId.toInt()
                 }
             }
         }
