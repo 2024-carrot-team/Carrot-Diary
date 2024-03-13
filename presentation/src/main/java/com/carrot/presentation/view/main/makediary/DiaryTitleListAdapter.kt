@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carrot.presentation.model.Diary
 import com.carrot.presentation.R
 import com.carrot.presentation.databinding.ItemDiaryTitleBinding
+import com.carrot.presentation.model.DiaryHeader
 
 class DiaryTitleListAdapter(
     private val viewModel: MakeDiaryViewModel,
-    val onItemClickListener: ((Diary) -> Unit)
+    val onItemClickListener: ((DiaryHeader) -> Unit)
 ) : RecyclerView.Adapter<DiaryTitleListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -32,7 +33,7 @@ class DiaryTitleListAdapter(
     }
 
     class ViewHolder(val binding: ItemDiaryTitleBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(diary: Diary, onItemClickListener: ((Diary) -> Unit)) {
+        fun bind(diary: DiaryHeader, onItemClickListener: ((DiaryHeader) -> Unit)) {
             binding.textViewTitleDiaryTitleItem.text = diary.title
             binding.root.setOnClickListener {
                 onItemClickListener.invoke(diary)

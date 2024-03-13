@@ -2,7 +2,12 @@ package com.carrot.presentation.view.main.writedaily
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,7 +18,7 @@ import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
 import com.carrot.presentation.databinding.ActivityWriteDailyBinding
 import com.carrot.presentation.databinding.DialogAccidentMakeBinding
-import com.carrot.presentation.view.main.dailylist.DailyListActivity
+import com.carrot.presentation.view.main.dailylist.DailyHeaderListActivity
 import com.carrot.presentation.view.main.makediary.AccidentImageListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,15 +38,20 @@ class WriteDailyActivity : AppCompatActivity() {
         binding = ActivityWriteDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel.setCookie()
-        viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
+//        viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
         binding.buttonMakeNewAccidentWriteDailyActivity.setOnClickListener { writeAccident() }
         binding.recyclerViewAccidentListWriteDailyActivity.adapter = accidentListAdapter
-
+        val postId = intent.getIntExtra("diary", 0)
+        val dailyId = intent.getIntExtra("daily", 0)
+        viewModel.setDailyId(dailyId)
         binding.buttonRegiDailyWriteDailyActivity.setOnClickListener {
-            val intent = Intent(this, DailyListActivity::class.java)
+            val intent = Intent(this, DailyHeaderListActivity::class.java)
+            intent.putExtra("diary", postId)
             startActivity(intent)
         }
-
+        binding.buttonRegiDailyWriteDailyActivity.setOnClickListener {
+            viewModel.saveDaily()
+        }
         initLiveData()
     }
 
@@ -51,7 +61,6 @@ class WriteDailyActivity : AppCompatActivity() {
             viewModel.diary.collect { diary ->
                 binding.textViewDailyTitleWriteDailyActivity.text = diary.title
             }
-
         }
         lifecycleScope.launch {
             viewModel.date.collect { date ->
@@ -112,6 +121,13 @@ class WriteDailyActivity : AppCompatActivity() {
                                 viewModel.addImage(
                                     clipData.getItemAt(i).uri.toString()
                                 )
+                                viewModel.makeMultiPartBodyList(
+                                    getBitmapFromUri(
+                                        clipData.getItemAt(
+                                            i
+                                        ).uri
+                                    )
+                                )
                             }
                             dialogBinding.textViewBlankImgAccidentMakeDialog.isInvisible = true
                         }
@@ -120,5 +136,12 @@ class WriteDailyActivity : AppCompatActivity() {
             }
         }
 
+    private fun getBitmapFromUri(uri: Uri) = if (Build.VERSION.SDK_INT >= 28) {
+        val source = ImageDecoder.createSource(application.contentResolver, uri)
+        ImageDecoder.decodeBitmap(source)
+    } else {
+        val bitmap = MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
+        Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+    }
 
 }

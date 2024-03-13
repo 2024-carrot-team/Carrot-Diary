@@ -1,5 +1,6 @@
 package com.carrot.presentation.view.main.dailylist
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carrot.presentation.databinding.ItemDailyListBinding
 import com.carrot.presentation.databinding.ItemDailyListDateBinding
 import com.carrot.presentation.model.Daily
+import com.carrot.presentation.model.DailyHeader
 import com.carrot.presentation.model.Diary
 import java.util.Date
 
@@ -21,31 +23,36 @@ class DailyListAdapter(private val context: Context) :
 
     private val dailyListItem = mutableListOf<Any>() //diary
 
-    fun updateDataset(diary: Diary) {
+//    fun updateDataset(diary: Diary) {
+//
+//        // Date로 그룹핑된 Map
+//        val dateGroups = diary.dailyList.groupBy { it.date }
+//
+//        // {Date1, Daily, Daily, Date2, Daily, Daily, .... (Daily 중 가장 첫 번째꺼 출력!)
+//        dateGroups.entries.forEach { entry ->
+//            entry.key?.let { dailyListItem.add(it) }
+//            dailyListItem.addAll(entry.value)
+//        }
+//
+//        dailyListItem.forEach { item ->
+//            Log.d("ddddddd", item.toString())
+//        }
+//
+//
+//        // update DataSet
+//        dailyListItem.addAll(dailyListItem)
+//        notifyDataSetChanged() // to dailyListItem
+//    }
 
-        // Date로 그룹핑된 Map
-        val dateGroups = diary.dailyList.groupBy { it.date }
-
-        // {Date1, Daily, Daily, Date2, Daily, Daily, .... (Daily 중 가장 첫 번째꺼 출력!)
-        dateGroups.entries.forEach { entry ->
-            entry.key?.let { dailyListItem.add(it) }
-            dailyListItem.addAll(entry.value)
-        }
-
-        dailyListItem.forEach { item ->
-            Log.d("ddddddd", item.toString())
-        }
-
-
-        // update DataSet
-        dailyListItem.addAll(dailyListItem)
-        notifyDataSetChanged() // to dailyListItem
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateDataSet(dailyHeaderList: List<DailyHeader>) {
+        dailyListItem.addAll(dailyHeaderList)
+        notifyDataSetChanged()
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        Log.d("ddddddd", "onCreateViewHolder")
         return when (viewType) {
             VIEW_TYPE_HEADER -> {
                 DailyListDateViewHolder(
@@ -69,7 +76,6 @@ class DailyListAdapter(private val context: Context) :
 
 
     override fun getItemViewType(position: Int): Int {
-        Log.d("ddddddd", "getItemViewType")
 
         return when (dailyListItem[position]) {
             is Date? -> VIEW_TYPE_HEADER
@@ -92,7 +98,7 @@ class DailyListAdapter(private val context: Context) :
             }
 
             is DailyListContainerViewHolder -> {
-                val item = dailyListItem[position] as Daily
+                val item = dailyListItem[position] as DailyHeader
                 holder.bind(item)
             }
 
@@ -116,9 +122,9 @@ class DailyListAdapter(private val context: Context) :
     class DailyListContainerViewHolder(private val itemBinding: ItemDailyListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(item: Daily) {
+        fun bind(item: DailyHeader) {
 
-            itemBinding.containerTvDily.text = item.accidents[0].toString()
+            itemBinding.containerTvDily.text = item.content
             itemBinding.dayTvDailyList.text = "23일"
 
             Log.d("list", "container")

@@ -95,6 +95,7 @@ class MakeDiaryActivity : AppCompatActivity() {
     }
 
 
+
     private val activityResult: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {

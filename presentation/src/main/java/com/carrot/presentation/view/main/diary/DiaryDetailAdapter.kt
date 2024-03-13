@@ -36,8 +36,8 @@ class DiaryDetailAdapter(private val diaryList: List<Diary>, private val context
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
         val item = diaryList[position]
-        //if (item != null) {
         holder.bind(item.dailyList, context)
+
         Log.d("test", item.id.toString())
         // }
 
