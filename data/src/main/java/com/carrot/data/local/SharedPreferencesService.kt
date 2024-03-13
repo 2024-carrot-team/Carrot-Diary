@@ -13,6 +13,7 @@ class SharedPreferencesService @Inject constructor(
 ) {
     companion object {
         private const val COOKIE_KEY = "Cookie"
+        private const val USER_ID = "UserId"
     }
 
     var cookie: String?
@@ -20,5 +21,9 @@ class SharedPreferencesService @Inject constructor(
         set(value) {
             sharedPreferences.edit().putString(COOKIE_KEY, value).apply()
         }
-
+    var userId: Int?
+        get() = sharedPreferences.getInt(USER_ID, 0)
+        set(value) {
+            sharedPreferences.edit().putInt(USER_ID, value!!).apply()
+        }
 }

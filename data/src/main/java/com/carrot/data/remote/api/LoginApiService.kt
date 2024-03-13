@@ -32,9 +32,9 @@ interface LoginApiService {
     suspend fun makeDaily(
         @Header("Cookie") authorization: String,
         @Path("post_id") postId: String,
-    ): Response<Long>
+//    ): Response<Long>
+    ): Response<DailyIdDTO>
 
-    //    Response<DailyIdDTO>
     @GET("post/{post_id}")
     suspend fun getDailyList(
         @Header("Cookie") authorization: String,
