@@ -1,12 +1,9 @@
 package com.carrot.presentation.common
 
 import com.carrot.presentation.model.Accident
-import com.carrot.presentation.model.Daily
+import com.carrot.presentation.model.MainDiaries
 import com.carrot.presentation.model.Diary
 import com.carrot.presentation.model.User
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class Dummy {
     companion object {
@@ -38,12 +35,12 @@ class Dummy {
                 date = "2024년01월24일11시21분"
             )
         )
-        val dailyList: List<Daily> = arrayListOf<Daily>(
-            Daily(
+        val dailyList: List<MainDiaries> = arrayListOf<MainDiaries>(
+            MainDiaries(
                 id = 0, date = "123", likes = 1, accidents = accidentList
-            ), Daily(
+            ), MainDiaries(
                 id = 0, date = "123", likes = 1, accidents = accidentList
-            ), Daily(
+            ), MainDiaries(
                 id = 0, date = "123", likes = 1, accidents = accidentList
             )
         )

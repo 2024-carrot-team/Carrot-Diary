@@ -2,7 +2,7 @@ package com.carrot.presentation.model
 
 import java.io.File
 
-data class Daily(
+data class MainDiaries(
     val id: Int,
     val date: String?,
     val likes: Int,

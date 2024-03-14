@@ -1,25 +1,34 @@
 package com.carrot.presentation.view.main.daily
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.carrot.presentation.databinding.FragmentDiaryBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DailyFragment : Fragment() {
 
     private val fragmentTitleList = mutableListOf("추천", "팔로워")
 
-    private lateinit var binding: FragmentDiaryBinding
+    private var _binding: FragmentDiaryBinding? = null
+
+    private val viewModel: DailyViewModel by viewModels()
+    private val binding
+        get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentDiaryBinding.inflate(inflater, container, false)
+        _binding = FragmentDiaryBinding.inflate(inflater, container, false)
         return binding.root
     }
 

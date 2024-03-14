@@ -4,7 +4,7 @@ data class Diary(
     val id: Int?,
     val title: String,
     val user: User,
-    val dailyList: List<Daily>,
+    val dailyList: List<MainDiaries>,
     val cover: String,
     val date: String,
 )

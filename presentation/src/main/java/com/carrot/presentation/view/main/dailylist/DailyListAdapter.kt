@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.carrot.presentation.databinding.ItemDailyListBinding
 import com.carrot.presentation.databinding.ItemDailyListDateBinding
-import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.DailyHeader
-import com.carrot.presentation.model.Diary
 import java.util.Date
 
 
