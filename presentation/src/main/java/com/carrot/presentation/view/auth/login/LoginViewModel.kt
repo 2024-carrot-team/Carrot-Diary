@@ -32,10 +32,6 @@ class LoginViewModel @Inject constructor(
 
                 _isLogin.value = 1
 
-                println("로그인 뷰모델 쿠키 값 size ${result.headers().values("Set-Cookie").size}")
-                println("로그인 뷰모델 쿠키 값 전체 ${result.headers().values("Set-Cookie")[0]}")
-                println("로그인 뷰모델 쿠키 값 전체 ${result.headers().values("Set-Cookie")}")
-                println("로그인 뷰모델 쿠키 값 입력 ${sharedPreferencesService.cookie}")
             } else {
                 _isLogin.value = 2
             }
