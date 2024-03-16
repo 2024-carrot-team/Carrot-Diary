@@ -48,6 +48,7 @@ class DiaryWriteDialogFragment : DialogFragment() {
             DiaryTitleListAdapter(viewModel, onItemClickListener = { diary: DiaryHeader ->
                 val intent = Intent(context, DailyHeaderListActivity::class.java)
                 intent.putExtra("diary", diary.postId)
+                intent.putExtra("diary_title",diary.title)
                 startActivity(intent)
             })
     }

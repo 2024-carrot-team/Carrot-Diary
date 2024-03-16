@@ -11,7 +11,10 @@ import com.carrot.presentation.databinding.ItemDailyListDateBinding
 import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.DailyHeader
 import com.carrot.presentation.model.Diary
+import com.carrot.presentation.model.DiaryHeader
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 
 // viewtype
@@ -23,30 +26,20 @@ class DailyListAdapter(private val context: Context) :
 
     private val dailyListItem = mutableListOf<Any>() //diary
 
-//    fun updateDataset(diary: Diary) {
-//
-//        // Date로 그룹핑된 Map
-//        val dateGroups = diary.dailyList.groupBy { it.date }
-//
-//        // {Date1, Daily, Daily, Date2, Daily, Daily, .... (Daily 중 가장 첫 번째꺼 출력!)
-//        dateGroups.entries.forEach { entry ->
-//            entry.key?.let { dailyListItem.add(it) }
-//            dailyListItem.addAll(entry.value)
-//        }
-//
-//        dailyListItem.forEach { item ->
-//            Log.d("ddddddd", item.toString())
-//        }
-//
-//
-//        // update DataSet
-//        dailyListItem.addAll(dailyListItem)
-//        notifyDataSetChanged() // to dailyListItem
-//    }
-
     @SuppressLint("NotifyDataSetChanged")
     fun updateDataSet(dailyHeaderList: List<DailyHeader>) {
-        dailyListItem.addAll(dailyHeaderList)
+        // Date로 그룹핑된 Map
+        val dateGroups = dailyHeaderList.groupBy { it.yearMonth }
+
+        // {Date1, Daily, Daily, Date2, Daily, Daily, .... (Daily 중 가장 첫 번째꺼 출력!)
+        dateGroups.entries.forEach { entry ->
+            entry.key.let { dailyListItem.add(it) }
+            dailyListItem.addAll(entry.value)
+        }
+
+        dailyListItem.forEach { item ->
+            Log.d("dailyListItem.forEach", item.toString())
+        }
         notifyDataSetChanged()
     }
 
@@ -78,7 +71,7 @@ class DailyListAdapter(private val context: Context) :
     override fun getItemViewType(position: Int): Int {
 
         return when (dailyListItem[position]) {
-            is Date? -> VIEW_TYPE_HEADER
+            is String -> VIEW_TYPE_HEADER
             else -> VIEW_TYPE_CONTAINER // Daily
         }
     }
@@ -91,31 +84,21 @@ class DailyListAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is DailyListDateViewHolder -> {
-                val item = dailyListItem[position] as Date?
+                val item = dailyListItem[position] as String?
                 holder.bind(item)
-                Log.d("ddddddd", "onBindViewHolder")
-
             }
-
             is DailyListContainerViewHolder -> {
                 val item = dailyListItem[position] as DailyHeader
                 holder.bind(item)
             }
-
         }
-
     }
 
 
     class DailyListDateViewHolder(private val itemBinding: ItemDailyListDateBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(item: Date?) {
-
-            itemBinding.dateTvDailyList.text = "1월"
-            Log.d("ddddddd", "DailyListDateViewHolder")
-
-            //itemBinding.executePendingBindings()
-
+        fun bind(item: String?) {
+            itemBinding.dateTvDailyList.text =  item
         }
     }
 
@@ -123,13 +106,8 @@ class DailyListAdapter(private val context: Context) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(item: DailyHeader) {
-
             itemBinding.containerTvDily.text = item.content
-            itemBinding.dayTvDailyList.text = "23일"
-
-            Log.d("list", "container")
-
-            //itemBinding.executePendingBindings()
+            itemBinding.dayTvDailyList.text = item.day
         }
     }
 }

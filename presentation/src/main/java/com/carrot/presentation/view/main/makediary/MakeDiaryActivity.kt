@@ -51,7 +51,6 @@ class MakeDiaryActivity : AppCompatActivity() {
         }
         binding.buttonMakeNewDiaryDiaryWriteDialog.setOnClickListener {
             val uri = viewModel.selectedUri.value
-//            viewModel.test(binding.editTextDiaryTitle.text.toString())
             if (uri != null) {
                 println("체크 $uri")
                 viewModel.makeDiary(

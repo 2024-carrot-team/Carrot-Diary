@@ -50,7 +50,7 @@ class WriteDailyActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonRegiDailyWriteDailyActivity.setOnClickListener {
-            viewModel.saveDaily()
+            finish()
         }
         initLiveData()
     }

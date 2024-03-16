@@ -18,6 +18,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDailyListBinding
 
     private var postId: Int = 0
+    private var diaryTitle: String = ""
 
     private val viewModel: DailyListViewModel by viewModels()
 
@@ -27,18 +28,20 @@ class DailyHeaderListActivity : AppCompatActivity() {
         binding = ActivityDailyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         postId = intent.getIntExtra("diary", 0)
-
+        diaryTitle = intent.getStringExtra("diary_title") ?: ""
         adapter = DailyListAdapter(this)
 
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager =
+        binding.textViewDailyTitleDailyListActivity.text = diaryTitle
+
+        binding.recyclerViewDailyListActivity.adapter = adapter
+        binding.recyclerViewDailyListActivity.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         if (postId != 0) {
             viewModel.loadDailyHeaderList(postId)
         }
         initListener(this)
-        binding.buttonMakeNewDaily.setOnClickListener {
+        binding.buttonMakeNewDailyDailyListActivity.setOnClickListener {
             viewModel.makeDaily(postId)
         }
     }
@@ -55,6 +58,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
                     val intent = Intent(context, WriteDailyActivity::class.java)
                     intent.putExtra("diary", postId)
                     intent.putExtra("daily", dailyId)
+                    intent.putExtra("diary_title",diaryTitle)
                     startActivity(intent)
                 }
             }
