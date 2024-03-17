@@ -8,6 +8,7 @@ import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
 import com.carrot.presentation.model.Accident
 import com.carrot.presentation.model.Diary
+import com.carrot.presentation.model.mapper.toView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +32,7 @@ class WriteDailyViewModel @Inject constructor(
 
 
     private val dateTimeFormatter = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
-    private val _diary = MutableStateFlow<Diary>(Dummy.diaryList.first())
+    private val _diary = MutableStateFlow<Diary?>(null)
     val diary = _diary.asStateFlow()
 
     private val _accidentList = MutableStateFlow<List<Accident>>(emptyList())
@@ -59,8 +60,8 @@ class WriteDailyViewModel @Inject constructor(
     //    val bitMapList = MutableStateFlow<List<Bitmap>>(emptyList())
     val bitMapList = MutableStateFlow<List<MultipartBody.Part>>(emptyList())
 
-    fun loadDiaryId(id: Int) {
-//        _diary.value = Dummy.diaryList[id]
+    fun loadDiaryDate(date: String) {
+        _date.value = date
     }
 
     fun setDailyId(dailyId: Int) {
@@ -81,23 +82,38 @@ class WriteDailyViewModel @Inject constructor(
 
     fun addAccident(content: String) {
         viewModelScope.launch {
+            //사건 등록
             api.postDaily(
                 content = content.toRequestBody("text/plain".toMediaTypeOrNull()),
                 authorization = sharedPreferencesService.cookie ?: "",
                 images = bitMapList.value,
                 postDiaryId = _dailyId.value.toString()
             )
+            bitMapList.value = emptyList()
         }
+        //api와 별도로 local의 UI 적용
         _accidentList.value = _accidentList.value + Accident(
             imageList = _imageList.value,
             id = _accidentId.value,
-            date = _date.value,
             content = content
         )
         _accidentId.value += 1
     }
 
-    fun saveDaily() {
+    fun getDaily(dailyId: String) {
+        viewModelScope.launch {
+            val result = api.getDaily(
+                authorization = sharedPreferencesService.cookie ?: "",
+                postDiaryId = dailyId
+            )
+            if (result.code() == 200) {
+                result.body().let { dailyDTO ->
+                    _accidentList.value = dailyDTO!!.toView()
+                }
+                println("결과값들 ${result.body()}")
+            }
+
+        }
 
     }
 
@@ -108,12 +124,6 @@ class WriteDailyViewModel @Inject constructor(
             "and" + System.currentTimeMillis(),
             imageRequestBody
         )
-//        val imageMultipartBody: MultipartBody.Part =
-//            MultipartBody.Part.createFormData(
-//                "image",
-//                "and" + System.currentTimeMillis(),
-//                imageRequestBody
-//            )
     }
 
     companion object {

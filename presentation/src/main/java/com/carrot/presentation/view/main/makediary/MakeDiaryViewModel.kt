@@ -68,7 +68,6 @@ class MakeDiaryViewModel @Inject constructor(
                 }
             }
         }
-//        _diaryList.value = Dummy.diaryList
     }
 
     fun makeDiary(title: String, bitmap: Bitmap) {

@@ -49,7 +49,6 @@ class MakeDiaryActivity : AppCompatActivity() {
         binding.buttonMakeNewDiaryDiaryWriteDialog.setOnClickListener {
             val uri = viewModel.selectedUri.value
             if (uri != null) {
-                println("체크 $uri")
                 viewModel.makeDiary(
                     binding.editTextDiaryTitle.text.toString(),
                     getBitmapFromUri(uri)
@@ -89,7 +88,6 @@ class MakeDiaryActivity : AppCompatActivity() {
                 Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
         }
     }
-
 
 
     private val activityResult: ActivityResultLauncher<Intent> =

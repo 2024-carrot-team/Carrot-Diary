@@ -1,10 +1,11 @@
 package com.carrot.data.remote.api
 
+import com.carrot.data.model.DailyDTO
 import com.carrot.data.model.DailyHeaderListDTO
 import com.carrot.data.model.DailyIdDTO
-import com.carrot.data.model.DiaryDetailDTO
-import com.carrot.data.model.DiaryListDTO
 import com.carrot.data.model.DailySeqDTO
+import com.carrot.data.model.DiaryDetailDTO
+import com.carrot.data.model.DiaryHeaderListDTO
 import com.carrot.data.model.LoginRequest
 import com.carrot.data.model.MainDTO
 import com.carrot.data.model.PostUser
@@ -18,6 +19,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+
 interface LoginApiService {
     @POST("members")
     suspend fun postRegister(@Body user: PostUser): Response<Any>
@@ -28,7 +30,7 @@ interface LoginApiService {
     @GET("post")
     suspend fun getDiary(
         @Header("Cookie") authorization: String,
-    ): Response<DiaryListDTO>
+    ): Response<DiaryHeaderListDTO>
 
     @POST("postDiary/{post_id}")
     suspend fun makeDaily(
@@ -61,6 +63,11 @@ interface LoginApiService {
         @Part images: List<MultipartBody.Part>
     ): Response<Any>
 
+    @GET("diary/all/{postDiary_id}")
+    suspend fun getDaily(
+        @Header("Cookie") authorization: String,
+        @Path("postDiary_id") postDiaryId: String,
+    ): Response<DailyDTO>
 
     @GET("postDiary/{postDiary_id}") //24
     suspend fun getMainPageDaily(

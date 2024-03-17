@@ -29,8 +29,17 @@ class DailyHeaderListActivity : AppCompatActivity() {
         binding = ActivityDailyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         postId = intent.getIntExtra("diary", 0)
+        println("DailyHeaderListActivity postId값 $postId")
         diaryTitle = intent.getStringExtra("diary_title") ?: ""
-        adapter = DailyListAdapter(this)
+        adapter = DailyListAdapter(this,
+            onItemClickListener = { dailyHeader ->
+                val intent = Intent(this, WriteDailyActivity::class.java)
+                intent.putExtra("diary", postId)
+                intent.putExtra("daily", dailyHeader.postDiaryId)
+                intent.putExtra("daily_date", dailyHeader.yearMonthDay)
+                intent.putExtra("diary_title", diaryTitle)
+                startActivity(intent)
+            })
 
         binding.textViewDailyTitleDailyListActivity.text = diaryTitle
 
@@ -59,7 +68,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
                     val intent = Intent(context, WriteDailyActivity::class.java)
                     intent.putExtra("diary", postId)
                     intent.putExtra("daily", dailyId)
-                    intent.putExtra("diary_title",diaryTitle)
+                    intent.putExtra("diary_title", diaryTitle)
                     startActivity(intent)
                 }
             }

@@ -23,16 +23,14 @@ class Dummy {
                 id = 0,
                 content = "오늘 날씨 최고",
                 imageList = accidentImageList,
-                date = "2024년01월24일11시21분"
             ), Accident(
-                id = 1, content = "아 배고파", imageList = accidentImageList, date = "2024년01월24일11시21분"
+                id = 1, content = "아 배고파", imageList = accidentImageList
             ), Accident(
-                id = 2, content = "오점뭐", imageList = accidentImageList, date = "2024년01월24일11시21분"
+                id = 2, content = "오점뭐", imageList = accidentImageList,
             ), Accident(
                 id = 3,
                 content = "코틀린 미만잡",
                 imageList = accidentImageList,
-                date = "2024년01월24일11시21분"
             )
         )
         val dailyList: List<MainDiaries> = arrayListOf<MainDiaries>(

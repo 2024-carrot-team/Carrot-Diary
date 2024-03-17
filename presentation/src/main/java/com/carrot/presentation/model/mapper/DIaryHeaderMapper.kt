@@ -1,10 +1,10 @@
 package com.carrot.presentation.model.mapper
 
 
-import com.carrot.data.model.DiaryListDTO
+import com.carrot.data.model.DiaryHeaderListDTO
 import com.carrot.presentation.model.DiaryHeader
 
-internal fun DiaryListDTO.toView(): List<DiaryHeader> =
+internal fun DiaryHeaderListDTO.toView(): List<DiaryHeader> =
     this.data!!.map { diaryHeaderDTO ->
         DiaryHeader(
             postId = diaryHeaderDTO.postId,

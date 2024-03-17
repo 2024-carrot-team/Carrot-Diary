@@ -9,9 +9,3 @@ data class Daily(
     val likes: Int,
     val accidents: List<Accident>,
 )
-
-
-data class DailyDTO(
-    val content: String?,
-    val image: File?,
-)

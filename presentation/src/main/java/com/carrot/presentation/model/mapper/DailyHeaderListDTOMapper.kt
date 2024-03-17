@@ -7,6 +7,7 @@ internal fun DailyHeaderListDTO.toView(): List<DailyHeader> =
     this.data!!.map { dailyHeaderDTO ->
         DailyHeader(
             content = dailyHeaderDTO.content,
-            diaryDate = dailyHeaderDTO.diaryDate
+            diaryDate = dailyHeaderDTO.diaryDate,
+            postDiaryId = dailyHeaderDTO.postDiaryId
         )
     }

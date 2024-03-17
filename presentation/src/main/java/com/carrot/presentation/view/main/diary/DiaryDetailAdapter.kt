@@ -15,7 +15,7 @@ import com.carrot.presentation.databinding.ItemImageBinding
 class DiaryDetailAdapter(
     private val context: Context,
     private val viewModel: DiaryDetailViewModel,
-    ) :
+) :
     RecyclerView.Adapter<DiaryDetailAdapter.DiaryViewHolder>() {
     private lateinit var diaryList: List<String>
     fun setData(diaryList: List<String>) {
@@ -44,36 +44,19 @@ class DiaryDetailAdapter(
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
         val item = diaryList[position]
-        if(!item.isNullOrBlank() && !item.isNullOrEmpty()) {
+        if (!item.isNullOrBlank() && !item.isNullOrEmpty()) {
             holder.bind(context, item, viewModel)
         }
     }
 
     class DiaryViewHolder(private val binding: ItemDiaryDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(context: Context , item: String, viewModel: DiaryDetailViewModel) {
+        fun bind(context: Context, item: String, viewModel: DiaryDetailViewModel) {
 
             // 일기 데이터
-            val  diaryDetailDTO: DiaryDetailDTO? = viewModel.loadDetailDaily(item)
+            val diaryDetailDTO: DiaryDetailDTO? = viewModel.loadDetailDaily(item)
 
-//            val contentList = ArrayList<String>()
-//            contentList.add("1")
-//            contentList.add("2")
-//            contentList.add("3")
-//
-//            val imageList = ArrayList<String>()
-//            imageList.add("1")
-//            imageList.add("2")
-//            imageList.add("3")
-//
-
-             binding.contentTvDiaryDetail.text= diaryDetailDTO?.data!!.content
-
-
-//            val contentAdapter = ContentAdapter(DiaryDetailDTO.)
-//            itemBinding.contentRvDiaryDetail.adapter = contentAdapter
-//            itemBinding.contentRvDiaryDetail.layoutManager =
-//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.contentTvDiaryDetail.text = diaryDetailDTO?.data!!.content
 
             val imageAdapter = ImageAdapter(context, diaryDetailDTO?.data!!.imageInfo)
             binding.imageRvDiaryDetail.adapter = imageAdapter

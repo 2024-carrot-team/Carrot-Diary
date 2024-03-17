@@ -3,7 +3,7 @@ package com.carrot.data.model
 import com.google.gson.annotations.SerializedName
 
 
-data class DiaryListDTO(
+data class DiaryHeaderListDTO(
     @SerializedName("data") val data: List<DiaryHeaderDTO>? = null
 ) {
     data class DiaryHeaderDTO(

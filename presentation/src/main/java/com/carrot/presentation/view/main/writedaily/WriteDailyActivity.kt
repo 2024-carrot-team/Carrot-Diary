@@ -43,7 +43,15 @@ class WriteDailyActivity : AppCompatActivity() {
         binding.recyclerViewAccidentListWriteDailyActivity.adapter = accidentListAdapter
         val postId = intent.getIntExtra("diary", 0)
         val dailyId = intent.getIntExtra("daily", 0)
+        val dailyDate = intent.getStringExtra("daily_date")
+        val diaryTitle = intent.getStringExtra("diary_title")
+
+        binding.textViewDailyTitleWriteDailyActivity.text = diaryTitle
+
+        println("DailyHeaderListActivity postId값 $postId")
+        viewModel.loadDiaryDate(dailyDate ?: "")
         viewModel.setDailyId(dailyId)
+        viewModel.getDaily(dailyId.toString())
         binding.buttonRegiDailyWriteDailyActivity.setOnClickListener {
             val intent = Intent(this, DailyHeaderListActivity::class.java)
             intent.putExtra("diary", postId)
@@ -59,7 +67,7 @@ class WriteDailyActivity : AppCompatActivity() {
     private fun initLiveData() {
         lifecycleScope.launch {
             viewModel.diary.collect { diary ->
-                binding.textViewDailyTitleWriteDailyActivity.text = diary.title
+                binding.textViewDailyTitleWriteDailyActivity.text = diary?.title ?: ""
             }
         }
         lifecycleScope.launch {

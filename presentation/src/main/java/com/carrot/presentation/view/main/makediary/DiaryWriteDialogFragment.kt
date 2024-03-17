@@ -19,10 +19,7 @@ class DiaryWriteDialogFragment : DialogFragment() {
         get() = _binding!!
 
     private val viewModel: MakeDiaryViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -47,8 +44,9 @@ class DiaryWriteDialogFragment : DialogFragment() {
         binding.recyclerViewDiaryListDiaryWriteDialog.adapter =
             DiaryTitleListAdapter(viewModel, onItemClickListener = { diary: DiaryHeader ->
                 val intent = Intent(context, DailyHeaderListActivity::class.java)
+                println("DiaryWriteDialogFragment postId값 ${diary.postId}")
                 intent.putExtra("diary", diary.postId)
-                intent.putExtra("diary_title",diary.title)
+                intent.putExtra("diary_title", diary.title)
                 startActivity(intent)
             })
     }

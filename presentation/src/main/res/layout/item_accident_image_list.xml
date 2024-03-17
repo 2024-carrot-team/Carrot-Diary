@@ -8,7 +8,7 @@
         android:id="@+id/imageView_accidentImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:scaleType="center"
         android:src="@drawable/blank_image"
         app:layout_constraintBottom_toBottomOf="parent"

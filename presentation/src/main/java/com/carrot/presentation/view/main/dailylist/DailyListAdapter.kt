@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.carrot.presentation.databinding.ItemDailyListBinding
 import com.carrot.presentation.databinding.ItemDailyListDateBinding
-import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.DailyHeader
 import com.carrot.presentation.model.Diary
 import com.carrot.presentation.model.DiaryHeader
@@ -21,7 +20,10 @@ import java.util.Locale
 private const val VIEW_TYPE_HEADER = 0
 private const val VIEW_TYPE_CONTAINER = 1
 
-class DailyListAdapter(private val context: Context) :
+class DailyListAdapter(
+    private val context: Context,
+    val onItemClickListener: ((DailyHeader) -> Unit)
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dailyListItem = mutableListOf<Any>() //diary
@@ -85,11 +87,17 @@ class DailyListAdapter(private val context: Context) :
         when (holder) {
             is DailyListDateViewHolder -> {
                 val item = dailyListItem[position] as String?
-                holder.bind(item)
+                holder.bind(
+                    item = item
+                )
             }
+
             is DailyListContainerViewHolder -> {
                 val item = dailyListItem[position] as DailyHeader
-                holder.bind(item)
+                holder.bind(
+                    item,
+                    onItemClickListener = onItemClickListener
+                )
             }
         }
     }
@@ -98,16 +106,17 @@ class DailyListAdapter(private val context: Context) :
     class DailyListDateViewHolder(private val itemBinding: ItemDailyListDateBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: String?) {
-            itemBinding.dateTvDailyList.text =  item
+            itemBinding.dateTvDailyList.text = item
         }
     }
 
     class DailyListContainerViewHolder(private val itemBinding: ItemDailyListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(item: DailyHeader) {
+        fun bind(item: DailyHeader, onItemClickListener: (DailyHeader) -> Unit) {
             itemBinding.containerTvDily.text = item.content
             itemBinding.dayTvDailyList.text = item.day
+            itemBinding.root.setOnClickListener { onItemClickListener.invoke(item) }
         }
     }
 }

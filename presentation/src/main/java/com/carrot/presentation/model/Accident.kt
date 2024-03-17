@@ -5,6 +5,5 @@ package com.carrot.presentation.model
 data class Accident(
     val id: Int,
     val content: String,
-    val imageList: List<String>,
-    val date: String
+    val imageList: List<String>
 )
