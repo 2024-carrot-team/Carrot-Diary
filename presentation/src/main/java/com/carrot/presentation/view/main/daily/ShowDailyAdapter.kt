@@ -1,32 +1,30 @@
 package com.carrot.presentation.view.main.daily
 
-import android.content.Context
-import android.content.Intent
+
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.carrot.presentation.databinding.ItemDailyBinding
-import com.carrot.presentation.model.Daily
-import com.carrot.presentation.view.main.diary.DiaryDetailActivity
-
+import com.carrot.data.model.MainDiaries
 
 // 나중에 페이징 어뎁터로 리펙토링
-class ShowDailyAdapter(private val context: Context) :
-    ListAdapter<Daily, ShowDailyAdapter.DailyViewHolder>(DIFF_CALLBACK) {
+class ShowDailyAdapter(private val onItemClickListener:((Long) -> Unit)) :
+    ListAdapter<MainDiaries, ShowDailyAdapter.DailyViewHolder>(DIFF_CALLBACK) {
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Daily>() {
-            override fun areItemsTheSame(oldItem: Daily, newItem: Daily): Boolean {
-                return oldItem.id == newItem.id
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MainDiaries>() {
+            override fun areItemsTheSame(oldItem: MainDiaries, newItem: MainDiaries): Boolean {
+                return oldItem.diaries[0].diaryId == newItem.diaries[0].diaryId
             }
 
             override fun areContentsTheSame(
-                oldItem: Daily,
-                newItem: Daily
+                oldItem: MainDiaries,
+                newItem: MainDiaries
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.diaries[0].diaryId == newItem.diaries[0].diaryId
             }
         }
     }
@@ -34,6 +32,7 @@ class ShowDailyAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+
         return DailyViewHolder(
             ItemDailyBinding.inflate(
                 inflater,
@@ -46,19 +45,22 @@ class ShowDailyAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: DailyViewHolder, position: Int) {
         val item = getItem(position)
         if (item != null) {
-            holder.bind(item, context)
+            holder.bind(item, position, onItemClickListener)
         }
     }
 
-    class DailyViewHolder(private val itemDailyBinding: ItemDailyBinding) :
-        RecyclerView.ViewHolder(itemDailyBinding.root) {
-        fun bind(item: Daily, context: Context) {
-            // itemDailyBinding.commentIvDaily.t = item.id.toString()
-            itemDailyBinding.itemDaily.setOnClickListener {
-                val intent = Intent(context, DiaryDetailActivity::class.java)
-                itemDailyBinding.root.context.startActivity(intent)
-                Toast.makeText(context, "${item.id.toString()} 번 아이템 클릭", Toast.LENGTH_SHORT).show()
+    class DailyViewHolder(private val binding: ItemDailyBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: MainDiaries, position :Int,onItemClickListener:((Long) -> Unit)) {
+
+            //신고 다이얼
+            binding.moreIbDaily.setOnClickListener {
+
             }
+            binding.contentTvDaily.text = item.diaries[0].content
+            Glide.with(binding.root).load(Uri.parse(item.diaries[0].imageInfo[0].imageUrl))
+                .into(binding.ivDaily)
+            binding.root.setOnClickListener{onItemClickListener.invoke(item.postDiaryId)}
         }
     }
 }

@@ -1,9 +1,7 @@
 package com.carrot.presentation.view.main.makediary
 
-import android.content.ContentResolver
-import android.content.Context
+
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -14,7 +12,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.carrot.presentation.databinding.ActivityMakeDiaryBinding
@@ -107,4 +104,3 @@ class MakeDiaryActivity : AppCompatActivity() {
             }
         }
 }
-

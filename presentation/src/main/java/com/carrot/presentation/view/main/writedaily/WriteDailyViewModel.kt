@@ -7,10 +7,7 @@ import com.carrot.data.local.SharedPreferencesService
 import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.common.Dummy
 import com.carrot.presentation.model.Accident
-import com.carrot.presentation.model.Daily
 import com.carrot.presentation.model.Diary
-import com.carrot.presentation.model.mapper.toView
-import com.carrot.presentation.view.main.makediary.MakeDiaryViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

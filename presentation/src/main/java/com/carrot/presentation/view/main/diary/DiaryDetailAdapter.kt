@@ -1,20 +1,28 @@
 package com.carrot.presentation.view.main.diary
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.carrot.presentation.R
+import com.bumptech.glide.Glide
+import com.carrot.data.model.DiaryDetailDTO
+import com.carrot.data.model.ImageInfo
 import com.carrot.presentation.databinding.ItemContentBinding
 import com.carrot.presentation.databinding.ItemDiaryDetailBinding
 import com.carrot.presentation.databinding.ItemImageBinding
-import com.carrot.presentation.model.Daily
-import com.carrot.presentation.model.Diary
 
-class DiaryDetailAdapter(private val diaryList: List<Diary>, private val context: Context) :
+class DiaryDetailAdapter(
+    private val context: Context,
+    private val viewModel: DiaryDetailViewModel,
+    ) :
     RecyclerView.Adapter<DiaryDetailAdapter.DiaryViewHolder>() {
+    private lateinit var diaryList: List<String>
+    fun setData(diaryList: List<String>) {
+        this.diaryList = diaryList
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -36,38 +44,40 @@ class DiaryDetailAdapter(private val diaryList: List<Diary>, private val context
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
         val item = diaryList[position]
-        holder.bind(item.dailyList, context)
-
-        Log.d("test", item.id.toString())
-        // }
-
+        if(!item.isNullOrBlank() && !item.isNullOrEmpty()) {
+            holder.bind(context, item, viewModel)
+        }
     }
 
-    class DiaryViewHolder(private val itemBinding: ItemDiaryDetailBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(item: List<Daily>?, context: Context) {
-            Log.d("test", "test22222")
+    class DiaryViewHolder(private val binding: ItemDiaryDetailBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(context: Context , item: String, viewModel: DiaryDetailViewModel) {
+
+            // 일기 데이터
+            val  diaryDetailDTO: DiaryDetailDTO? = viewModel.loadDetailDaily(item)
+
+//            val contentList = ArrayList<String>()
+//            contentList.add("1")
+//            contentList.add("2")
+//            contentList.add("3")
+//
+//            val imageList = ArrayList<String>()
+//            imageList.add("1")
+//            imageList.add("2")
+//            imageList.add("3")
+//
+
+             binding.contentTvDiaryDetail.text= diaryDetailDTO?.data!!.content
 
 
-            val contentList = ArrayList<String>()
-            contentList.add("1")
-            contentList.add("2")
-            contentList.add("3")
+//            val contentAdapter = ContentAdapter(DiaryDetailDTO.)
+//            itemBinding.contentRvDiaryDetail.adapter = contentAdapter
+//            itemBinding.contentRvDiaryDetail.layoutManager =
+//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-            val imageList = ArrayList<String>()
-            imageList.add("1")
-            imageList.add("2")
-            imageList.add("3")
-
-            val contentAdapter = ContentAdapter(contentList)
-            itemBinding.contentRvDiaryDetail.adapter = contentAdapter
-            itemBinding.contentRvDiaryDetail.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-
-            val imageAdapter = ImageAdapter(imageList)
-            itemBinding.imageRvDiaryDetail.adapter = imageAdapter
-            itemBinding.imageRvDiaryDetail.layoutManager =
+            val imageAdapter = ImageAdapter(context, diaryDetailDTO?.data!!.imageInfo)
+            binding.imageRvDiaryDetail.adapter = imageAdapter
+            binding.imageRvDiaryDetail.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
@@ -114,7 +124,7 @@ class ContentAdapter(private val contentList: ArrayList<String>) :
 }
 
 
-class ImageAdapter(private val imageList: ArrayList<String>) :
+class ImageAdapter(private val context: Context, private val imageList: List<ImageInfo>) :
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -139,16 +149,16 @@ class ImageAdapter(private val imageList: ArrayList<String>) :
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val item = imageList[position]
 
-        holder.bind(item)
+        holder.bind(context, item)
 
     }
 
 
-    class ImageViewHolder(private val itemImageBinding: ItemImageBinding) :
-        RecyclerView.ViewHolder(itemImageBinding.root) {
+    class ImageViewHolder(private val binding: ItemImageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: String) {
-            itemImageBinding.imageIvDiary.setImageResource(R.drawable.heart)
+        fun bind(context: Context, item: ImageInfo) {
+            Glide.with(context).load(item.imageUrl).into(binding.imageIvDiary)
         }
     }
 }

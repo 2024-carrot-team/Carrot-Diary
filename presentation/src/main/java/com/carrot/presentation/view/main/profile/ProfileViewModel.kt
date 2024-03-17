@@ -1,5 +1,6 @@
 package com.carrot.presentation.view.main.profile
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carrot.data.local.SharedPreferencesService
@@ -37,6 +38,10 @@ class ProfileViewModel @Inject constructor(
                 result.body().let { diaryListDTO ->
                     _diaryList.value = diaryListDTO!!.toView()
                 }
+
+
+                Log.d("okhttp","${diaryList.value[0].postId}")
+
             }
         }
     }
