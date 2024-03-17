@@ -110,7 +110,7 @@ class WriteDailyViewModel @Inject constructor(
                 result.body().let { dailyDTO ->
                     _accidentList.value = dailyDTO!!.toView()
                 }
-                println("결과값들 ${result.body()}")
+                println("getDaily 결과값들 ${result.body()}")
             }
 
         }

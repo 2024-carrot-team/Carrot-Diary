@@ -4,17 +4,11 @@
     android:id="@+id/item_Daily"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:layout_margin="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="30dp"
+    android:background="@drawable/main_diary_frame"
     android:elevation="1dp"
     app:cardCornerRadius="5dp">
-
-    <ImageView
-        android:id="@+id/more_ib_daily"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/more"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -25,12 +19,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:background="@drawable/main_diary_title_frame"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -50,6 +45,7 @@
             android:text="사용자id" />
 
         <TextView
+            android:id="@+id/main_diary_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,6 +53,14 @@
             android:text="2024-12-01" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/more_ib_daily"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/more"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/heart_iv_daily"

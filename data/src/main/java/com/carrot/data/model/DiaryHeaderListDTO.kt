@@ -16,7 +16,7 @@ data class DiaryHeaderListDTO(
 
 // main.json
 data class MainDTO(
-    @SerializedName("data")val dataList: List<MainDiaries>,
+    @SerializedName("data") val dataList: List<MainDiaries>,
 )
 
 data class MainDiaries(
@@ -44,7 +44,7 @@ data class DailySeqDTO(
 
 data class DailyOfDiaryId(
     val memberId: Long,
-    @SerializedName("diaryId")val sequenceId: Long,
+    @SerializedName("diaryId") val sequenceId: Long,
     val content: String,
     val imageInfo: List<ImageInfo>,
 )
@@ -53,11 +53,12 @@ data class DailyOfDiaryId(
 // diarydetaildiaryId/ 내 일기 보기 /4(일기의 모든 것)
 data class DiaryDetailDTO(
     val data: Data,
-)
+) {
+    data class Data(
+        val diaryId: Long,
+        val content: String,
+        val imageInfo: List<ImageInfo>,
+    )
+}
 
-data class Data(
-    val diaryId: Long,
-    val content: String,
-    val imageInfo: List<ImageInfo>,
-)
 

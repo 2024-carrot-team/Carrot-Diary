@@ -9,10 +9,12 @@ import com.carrot.data.model.DiaryHeaderListDTO
 import com.carrot.data.model.LoginRequest
 import com.carrot.data.model.MainDTO
 import com.carrot.data.model.PostUser
+import com.carrot.data.model.Report
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -76,11 +78,10 @@ interface LoginApiService {
     ): Response<Any>
 
 
-
     @GET("main")
     suspend fun getMainPageDaily(
         @Header("Cookie") authorization: String,
-    ):Response<MainDTO>
+    ): Response<MainDTO>
 
 
     @GET("diary/all/{postDiary_id}")
@@ -94,9 +95,14 @@ interface LoginApiService {
     suspend fun getDailyDetail(
         @Header("Cookie") authorization: String,
         @Path("diary_id") diaryId: String,
-    ):Response<DiaryDetailDTO>
+    ): Response<DiaryDetailDTO>
 
 
-
+    @POST("report")
+    suspend fun report(
+        @Header("Cookie") authorization: String,
+        @Body body: Report
+    ): Response<Unit>
+//    ): Response<DailyIdDTO>
 
 }

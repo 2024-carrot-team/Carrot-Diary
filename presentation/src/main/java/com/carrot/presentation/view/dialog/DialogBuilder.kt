@@ -11,39 +11,39 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import com.carrot.presentation.databinding.DialogLoadingBinding
 
-class LoadingDialogBuilder(private val context: Context) {
+class DialogBuilder(private val context: Context) {
 
     private var title: String? = null
     private var message: String? = null
     private var icon: Drawable? = null
     private var onDismiss: (() -> Unit)? = null
 
-    fun setTitle(title: String): LoadingDialogBuilder {
+    fun setTitle(title: String): DialogBuilder {
         this.title = title
         return this
     }
 
-    fun setTitle(@StringRes titleRes: Int): LoadingDialogBuilder {
+    fun setTitle(@StringRes titleRes: Int): DialogBuilder {
         this.title = context.getString(titleRes)
         return this
     }
 
-    fun setIcon(@DrawableRes drawableId: Int): LoadingDialogBuilder {
+    fun setIcon(@DrawableRes drawableId: Int): DialogBuilder {
         this.icon = AppCompatResources.getDrawable(context, drawableId)
         return this
     }
 
-    fun setMessage(message: String): LoadingDialogBuilder {
+    fun setMessage(message: String): DialogBuilder {
         this.message = message
         return this
     }
 
-    fun setMessage(@StringRes messageRes: Int): LoadingDialogBuilder {
+    fun setMessage(@StringRes messageRes: Int): DialogBuilder {
         this.message = context.getString(messageRes)
         return this
     }
 
-    fun setOnDismissListener(callback: () -> Unit): LoadingDialogBuilder {
+    fun setOnDismissListener(callback: () -> Unit): DialogBuilder {
         this.onDismiss = callback
         return this
     }
