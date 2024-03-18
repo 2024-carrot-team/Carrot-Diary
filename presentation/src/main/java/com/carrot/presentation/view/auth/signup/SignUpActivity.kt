@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private val viewModel: SignUpViewModel by viewModels()
+    private var isAgree: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -30,45 +32,51 @@ class SignUpActivity : AppCompatActivity() {
             val nickname = binding.editTextNickNameSignUpActivity.text.toString()
             val birthDate = binding.editTextBirthDateSignUpActivity.text.toString()
 
-            if(id.isNullOrBlank() || id.isNullOrEmpty()|| nickname.isNullOrEmpty() || birthDate.isNullOrEmpty()) {
-                Toast.makeText(this,"입력해주세요.", Toast.LENGTH_SHORT).show()
-            } else if (!password.equals(passwordCheck)){
-                Toast.makeText(this,"비밀번호 확인해주세요.", Toast.LENGTH_SHORT).show()
-            } else if(binding.cbTermsSignUpActivity.isChecked){
+            if (id.isNullOrBlank() || id.isNullOrEmpty() || nickname.isNullOrEmpty() || birthDate.isNullOrEmpty()) {
+                Toast.makeText(this, "입력해주세요.", Toast.LENGTH_SHORT).show()
+            } else if (!password.equals(passwordCheck)) {
+                Toast.makeText(this, "비밀번호 확인해주세요.", Toast.LENGTH_SHORT).show()
+            } else if (isAgree) {
                 viewModel.signUp(id, password, nickname, birthDate)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(this,"개인정보처리방침 확인해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "개인정보처리방침 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.textTermsSignUpActivity.setOnClickListener{
-         // 개인정보 처리방침 바로가기
+        binding.textTermsSignUpActivity.setOnClickListener {
+            // 개인정보 처리방침 바로가기
+            val intent = Intent(this@SignUpActivity, WebViewActivity::class.java)
+            startActivity(intent)
+            isAgree = when (isAgree) {
+                true -> {
+                    false
+                }
 
-
-
-            binding.cbTermsSignUpActivity.isChecked = true
+                else -> {
+                    true
+                }
+            }
+            binding.cbTermsSignUpActivity.isChecked = isAgree
         }
         initListener()
-
-
-
 
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-       when(item.itemId) {
-           android.R.id.home -> { // 뒤로가기버튼
-               finish()
-               return true;
-           }
-           else -> {
-           }
+        when (item.itemId) {
+            android.R.id.home -> { // 뒤로가기버튼
+                finish()
+                return true;
+            }
 
-       }
+            else -> {
+            }
+
+        }
 
         return super.onOptionsItemSelected(item)
     }

@@ -23,6 +23,8 @@ class DiaryDetailActivity : AppCompatActivity() {
         binding = ActivityDiaryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val action = supportActionBar
+        action?.hide()
 
         val postDiaryId = getDiaryId()
 //        viewModel.getPostDiary(postDiaryId.toString())

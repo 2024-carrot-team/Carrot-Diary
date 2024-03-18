@@ -37,6 +37,7 @@ class WriteDailyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         viewModel.setCookie()
 //        viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
         binding.buttonMakeNewAccidentWriteDailyActivity.setOnClickListener { writeAccident() }

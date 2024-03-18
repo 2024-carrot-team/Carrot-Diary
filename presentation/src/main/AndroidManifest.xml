@@ -19,6 +19,9 @@
 
     <application>
         <activity
+            android:name=".view.auth.signup.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.auth.signup.SignUpActivity"
             android:exported="false" />
         <activity

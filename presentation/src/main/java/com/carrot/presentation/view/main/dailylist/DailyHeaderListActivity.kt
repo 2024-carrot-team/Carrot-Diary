@@ -29,6 +29,8 @@ class DailyHeaderListActivity : AppCompatActivity() {
         binding = ActivityDailyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         postId = intent.getIntExtra("diary", 0)
+        val action = supportActionBar
+        action?.hide()
         println("DailyHeaderListActivity postId값 $postId")
         diaryTitle = intent.getStringExtra("diary_title") ?: ""
         adapter = DailyListAdapter(this,
