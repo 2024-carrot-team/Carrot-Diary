@@ -15,7 +15,7 @@
         android:id="@+id/iv_daily"
         android:layout_width="match_parent"
         android:layout_height="218dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/splash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +36,14 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/baseline_person_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="사용자id" />
+            android:text="사용자id"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/main_diary_date"
@@ -50,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            android:text="2024-12-01" />
+            android:text="2024-12-01"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -75,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@id/heart_iv_daily"
         app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
@@ -92,6 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="44"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@id/comment_iv_daily"
         app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
@@ -101,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="44"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_daily" />
 
