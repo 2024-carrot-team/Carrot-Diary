@@ -62,42 +62,42 @@
 
 
     <LinearLayout
-        android:layout_marginTop="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/editText_password_login"
         app:layout_constraintTop_toBottomOf="@+id/editText_password_login">
 
         <TextView
             android:id="@+id/text_signUp_login"
-            style="@style/blueText"
+            style="@style/text_blue_bold_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입" />
 
         <TextView
-            style="@style/blueText"
+            style="@style/text_blue_bold_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" | " />
 
         <TextView
             android:id="@+id/text_findPass_login"
-            style="@style/blueText"
+            style="@style/text_blue_bold_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호 찾기" />
 
         <TextView
-            style="@style/blueText"
+            style="@style/text_blue_bold_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" | " />
 
         <TextView
             android:id="@+id/text_findId_login"
-            style="@style/blueText"
+            style="@style/text_blue_bold_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아이디 찾기" />
@@ -130,9 +130,10 @@
         app:layout_constraintTop_toBottomOf="@+id/button_login_login" />
 
     <ImageButton
-        android:backgroundTint="@color/white"
+        android:id="@+id/button_login_kakao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:src="@drawable/btn_kakao_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,14 +142,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_alpha20"
-        android:text="Copyright by"
         android:layout_marginBottom="10dp"
+        android:text="Copyright by 당근일기"
+        android:textColor="@color/black_alpha20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
-    
 </androidx.constraintlayout.widget.ConstraintLayout>

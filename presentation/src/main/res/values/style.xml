@@ -11,10 +11,16 @@
     </style>
 
 
-    <style name="blueText">
+    <style name="text_blue_bold_12">
         <item name="android:textColor">@color/blue</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_gray_italic_12">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 

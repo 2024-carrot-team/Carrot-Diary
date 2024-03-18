@@ -12,6 +12,7 @@ import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.view.main.MainActivity
 import com.carrot.presentation.databinding.ActivityLoginBinding
 import com.carrot.data.model.PostUser
+import com.carrot.presentation.R
 import com.carrot.presentation.view.auth.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -41,6 +42,12 @@ class LoginActivity : AppCompatActivity() {
         action?.hide()
 
 
+        initListener()
+
+
+    }
+
+    private fun initListener() {
         binding.buttonLoginLogin.setOnClickListener {
             val email = binding.editTextLoginIdLogin.text.toString()
             val pass = binding.editTextPasswordLogin.text.toString()
@@ -52,6 +59,22 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+        binding.buttonLoginKakao.setOnClickListener {
+            toastMassage(getString(R.string.developing))
+
+        }
+
+        binding.textFindIdLogin.setOnClickListener {
+            toastMassage(getString(R.string.developing))
+
+        }
+        binding.textFindPassLogin.setOnClickListener {
+            toastMassage(getString(R.string.developing))
+        }
+
+
+
     }
 
     private fun initLiveData() {
