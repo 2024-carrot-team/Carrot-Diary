@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -29,8 +30,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
         binding = ActivityDailyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         postId = intent.getIntExtra("diary", 0)
-        val action = supportActionBar
-        action?.hide()
+
         println("DailyHeaderListActivity postId값 $postId")
         diaryTitle = intent.getStringExtra("diary_title") ?: ""
 
@@ -52,7 +52,9 @@ class DailyHeaderListActivity : AppCompatActivity() {
             },
         )
 
-        binding.textViewDailyTitleDailyListActivity.text = diaryTitle
+        supportActionBar?.title = diaryTitle
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val action = supportActionBar
 
         binding.recyclerViewDailyListActivity.adapter = adapter
         binding.recyclerViewDailyListActivity.layoutManager =
@@ -85,4 +87,23 @@ class DailyHeaderListActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> { // 뒤로가기버튼
+                finish()
+                return true;
+            }
+
+            else -> {
+            }
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
+
 }
