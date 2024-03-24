@@ -123,10 +123,7 @@ class DailyListAdapter(
         fun bind(item: DailyHeader, position: Int, onItemClickListener: (DailyHeader) -> Unit, onDeleteClickListener: ((Int,Int) -> Unit) ) {
             itemBinding.containerTvDily.text = item.content
             itemBinding.dayTvDailyList.text = item.day
-            itemBinding.deleteIbDailyList.setOnClickListener { onDeleteClickListener.invoke(item.postDiaryId, position)
-
-
-            }
+            itemBinding.deleteIbDailyList.setOnClickListener { onDeleteClickListener.invoke(item.postDiaryId, position) }
             itemBinding.root.setOnClickListener { onItemClickListener.invoke(item) }
         }
     }

@@ -12,6 +12,7 @@ import com.carrot.presentation.databinding.ItemContentBinding
 import com.carrot.presentation.databinding.ItemDiaryDetailBinding
 import com.carrot.presentation.databinding.ItemImageBinding
 import com.carrot.presentation.model.Accident
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DiaryDetailAdapter(
     private val context: Context,
@@ -64,9 +65,15 @@ class DiaryDetailAdapter(
         fun bind(context: Context, accident: Accident) {
             binding.contentTvDiaryDetail.text = accident.content
             val imageAdapter = ImageAdapter(context, accident.imageList)
-            binding.imageRvDiaryDetail.adapter = imageAdapter
-            binding.imageRvDiaryDetail.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.imageViewpagerDiaryDetail.adapter = imageAdapter
+            TabLayoutMediator(
+                binding.viewpagerIndicatorDiaryDetail,binding.imageViewpagerDiaryDetail
+            ) { tab, position -> }.attach()
+
+
+
+//            binding.imageRvDiaryDetail.layoutManager =
+//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 //            fun bind(context: Context, item: String, viewModel: DiaryDetailViewModel) {
             // 일기 데이터
 //            val diaryDetailDTO: DiaryDetailDTO? = viewModel.loadDetailDaily(item)
