@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# 다음 경고 무시
+-dontwarn org.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
+# json 파싱, 난독화에서 제외
+-keep class com.carrot.di.** { *; }
+-keep public class com.carrot.data.model.** { *; }
+-keep public class com.carrot.data.model.mapper.** { *; }
+-keep public class com.carrot.presentation.model.** { *; }
+-keep public class com.carrot.presentation.model.mapper.** { *; }
