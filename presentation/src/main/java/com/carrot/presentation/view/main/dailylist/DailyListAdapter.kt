@@ -9,11 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carrot.presentation.databinding.ItemDailyListBinding
 import com.carrot.presentation.databinding.ItemDailyListDateBinding
 import com.carrot.presentation.model.DailyHeader
-import com.carrot.presentation.model.Diary
-import com.carrot.presentation.model.DiaryHeader
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 
 // viewtype
@@ -22,7 +17,8 @@ private const val VIEW_TYPE_CONTAINER = 1
 
 class DailyListAdapter(
     private val context: Context,
-    val onItemClickListener: ((DailyHeader) -> Unit)
+    val onItemClickListener: ((DailyHeader) -> Unit),
+    val onDeleteClickListener: ((Int) -> Unit),
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -96,7 +92,8 @@ class DailyListAdapter(
                 val item = dailyListItem[position] as DailyHeader
                 holder.bind(
                     item,
-                    onItemClickListener = onItemClickListener
+                    onItemClickListener = onItemClickListener,
+                    onDeleteClickListener = onDeleteClickListener,
                 )
             }
         }
@@ -113,9 +110,10 @@ class DailyListAdapter(
     class DailyListContainerViewHolder(private val itemBinding: ItemDailyListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(item: DailyHeader, onItemClickListener: (DailyHeader) -> Unit) {
+        fun bind(item: DailyHeader, onItemClickListener: (DailyHeader) -> Unit, onDeleteClickListener: ((Int) -> Unit) ) {
             itemBinding.containerTvDily.text = item.content
             itemBinding.dayTvDailyList.text = item.day
+            itemBinding.deleteIbDailyList.setOnClickListener { onDeleteClickListener.invoke(item.postDiaryId) }
             itemBinding.root.setOnClickListener { onItemClickListener.invoke(item) }
         }
     }

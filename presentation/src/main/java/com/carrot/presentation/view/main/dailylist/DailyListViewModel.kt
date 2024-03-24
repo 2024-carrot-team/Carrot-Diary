@@ -32,6 +32,11 @@ class DailyListViewModel @Inject constructor(
     private val _newDailyId = MutableStateFlow<Int>(0)
 
     val newDailyId = _newDailyId.asStateFlow()
+
+    private val _deleteDailyId = MutableStateFlow<Int>(0)
+
+    val deleteDailyId = _deleteDailyId.asStateFlow()
+
     fun loadDailyHeaderList(postId: Int) {
         viewModelScope.launch {
             val result = api.getDailyList(
@@ -57,6 +62,21 @@ class DailyListViewModel @Inject constructor(
                     _newDailyId.value = dailyIdDTO!!.postDiaryId.toInt()
                     sharedPreferencesService.userId = dailyIdDTO.userId.toInt()
                 }
+            }
+        }
+    }
+
+    fun deleteDaily(postId: Int) {
+        viewModelScope.launch {
+            val result = api.deleteDaily(
+                authorization = sharedPreferencesService.cookie ?: "",
+                postId = postId.toString()
+            )
+            if (result.isSuccessful && result.code() == 200 || result.code() == 201 ) {
+                _deleteDailyId.value++
+
+            } else {
+                _deleteDailyId.value = -100
             }
         }
     }

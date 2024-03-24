@@ -33,6 +33,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
         action?.hide()
         println("DailyHeaderListActivity postId값 $postId")
         diaryTitle = intent.getStringExtra("diary_title") ?: ""
+
         adapter = DailyListAdapter(this,
             onItemClickListener = { dailyHeader ->
                 val intent = Intent(this, WriteDailyActivity::class.java)
@@ -41,7 +42,15 @@ class DailyHeaderListActivity : AppCompatActivity() {
                 intent.putExtra("daily_date", dailyHeader.yearMonthDay)
                 intent.putExtra("diary_title", diaryTitle)
                 startActivity(intent)
-            })
+            },
+            onDeleteClickListener = { postDiaryId ->
+                viewModel.deleteDaily(
+                    postDiaryId,
+                )
+
+                Log.e("test",postDiaryId.toString())
+            },
+        )
 
         binding.textViewDailyTitleDailyListActivity.text = diaryTitle
 

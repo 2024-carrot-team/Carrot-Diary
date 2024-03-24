@@ -14,6 +14,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -104,5 +105,12 @@ interface LoginApiService {
         @Body body: Report
     ): Response<Unit>
 //    ): Response<DailyIdDTO>
+
+
+    @DELETE("diary/{diary_id}")
+    suspend fun deleteDaily(
+        @Header("Cookie") authorization: String,
+        @Path("diary_id") postId: String,
+    ): Response<Unit>
 
 }

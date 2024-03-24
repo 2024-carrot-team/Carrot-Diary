@@ -4,6 +4,9 @@ data class DailyHeader(
     val content: String,
     val diaryDate: String,
     val postDiaryId: Int,
+
+
+
 ) {
     val year = diaryDate.split("T")[0].split("-")[0] + "년"
     val month = diaryDate.split("T")[0].split("-")[1] + "월"
