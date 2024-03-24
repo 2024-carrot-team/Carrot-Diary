@@ -6,40 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".view.main.writedaily.WriteDailyActivity">
 
-    <ImageButton
-        android:id="@+id/button_moveToMain_writeDailyActivity"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@color/white"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_move_to_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_dailyTitle_writeDailyActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/button_moveToMain_writeDailyActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="일상 일기장" />
 
     <TextView
         android:id="@+id/textView_dailyDate_writeDailyActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:background="@drawable/daily_title_frame"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_moveToMain_writeDailyActivity"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="2024년 2월 08일의 일기" />
 
 

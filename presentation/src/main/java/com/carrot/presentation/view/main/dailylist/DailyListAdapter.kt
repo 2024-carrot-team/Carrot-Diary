@@ -18,11 +18,20 @@ private const val VIEW_TYPE_CONTAINER = 1
 class DailyListAdapter(
     private val context: Context,
     val onItemClickListener: ((DailyHeader) -> Unit),
-    val onDeleteClickListener: ((Int) -> Unit),
+    val onDeleteClickListener: ((Int,Int) -> Unit),
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dailyListItem = mutableListOf<Any>() //diary
+
+    fun deleteItem(position: Int){
+        dailyListItem.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    fun clearAllData(){
+        dailyListItem.clear()
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateDataSet(dailyHeaderList: List<DailyHeader>) {
@@ -92,6 +101,7 @@ class DailyListAdapter(
                 val item = dailyListItem[position] as DailyHeader
                 holder.bind(
                     item,
+                    position = position,
                     onItemClickListener = onItemClickListener,
                     onDeleteClickListener = onDeleteClickListener,
                 )
@@ -110,10 +120,13 @@ class DailyListAdapter(
     class DailyListContainerViewHolder(private val itemBinding: ItemDailyListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(item: DailyHeader, onItemClickListener: (DailyHeader) -> Unit, onDeleteClickListener: ((Int) -> Unit) ) {
+        fun bind(item: DailyHeader, position: Int, onItemClickListener: (DailyHeader) -> Unit, onDeleteClickListener: ((Int,Int) -> Unit) ) {
             itemBinding.containerTvDily.text = item.content
             itemBinding.dayTvDailyList.text = item.day
-            itemBinding.deleteIbDailyList.setOnClickListener { onDeleteClickListener.invoke(item.postDiaryId) }
+            itemBinding.deleteIbDailyList.setOnClickListener { onDeleteClickListener.invoke(item.postDiaryId, position)
+
+
+            }
             itemBinding.root.setOnClickListener { onItemClickListener.invoke(item) }
         }
     }

@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,7 +38,6 @@ class WriteDailyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteDailyBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel.setCookie()
 //        viewModel.loadDiaryId(intent.getIntExtra("diary", 0))
         binding.buttonMakeNewAccidentWriteDailyActivity.setOnClickListener { writeAccident() }
@@ -46,8 +46,7 @@ class WriteDailyActivity : AppCompatActivity() {
         val dailyId = intent.getIntExtra("daily", 0)
         val dailyDate = intent.getStringExtra("daily_date")
         val diaryTitle = intent.getStringExtra("diary_title")
-
-        binding.textViewDailyTitleWriteDailyActivity.text = diaryTitle
+        setActionBar(diaryTitle)
 
         println("DailyHeaderListActivity postId값 $postId")
         viewModel.loadDiaryDate(dailyDate ?: "")
@@ -68,7 +67,8 @@ class WriteDailyActivity : AppCompatActivity() {
     private fun initLiveData() {
         lifecycleScope.launch {
             viewModel.diary.collect { diary ->
-                binding.textViewDailyTitleWriteDailyActivity.text = diary?.title ?: ""
+                val title = diary?.title ?: ""
+                setActionBar(title)
             }
         }
         lifecycleScope.launch {
@@ -151,6 +151,27 @@ class WriteDailyActivity : AppCompatActivity() {
     } else {
         val bitmap = MediaStore.Images.Media.getBitmap(application.contentResolver, uri)
         Bitmap.createScaledBitmap(bitmap, bitmap.width / 2, bitmap.height / 2, true)
+    }
+
+    private fun setActionBar(diaryTitle: String?) {
+        supportActionBar?.title = diaryTitle
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> { // 뒤로가기버튼
+                finish()
+                return true;
+            }
+
+            else -> {
+            }
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

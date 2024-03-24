@@ -107,10 +107,10 @@ interface LoginApiService {
 //    ): Response<DailyIdDTO>
 
 
-    @DELETE("diary/{diary_id}")
+    @DELETE("postDiary/{postDiaryId}")
     suspend fun deleteDaily(
         @Header("Cookie") authorization: String,
-        @Path("diary_id") postId: String,
+        @Path("postDiaryId") postDiaryId: String,
     ): Response<Unit>
 
 }

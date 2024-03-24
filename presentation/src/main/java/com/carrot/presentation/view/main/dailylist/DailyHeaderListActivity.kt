@@ -3,7 +3,6 @@ package com.carrot.presentation.view.main.dailylist
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -43,30 +42,29 @@ class DailyHeaderListActivity : AppCompatActivity() {
                 intent.putExtra("diary_title", diaryTitle)
                 startActivity(intent)
             },
-            onDeleteClickListener = { postDiaryId ->
+            onDeleteClickListener = { postDiaryId, position ->
                 viewModel.deleteDaily(
                     postDiaryId,
                 )
-
-                Log.e("test",postDiaryId.toString())
+                adapter.deleteItem(position)
             },
         )
+        setActionBar()
+        loadItemData()
+        setRecyclerView()
+        initListener(this)
 
-        supportActionBar?.title = diaryTitle
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val action = supportActionBar
+    }
 
+    private fun setRecyclerView() {
         binding.recyclerViewDailyListActivity.adapter = adapter
         binding.recyclerViewDailyListActivity.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
 
-        if (postId != 0) {
-            viewModel.loadDailyHeaderList(postId)
-        }
-        initListener(this)
-        binding.buttonMakeNewDailyDailyListActivity.setOnClickListener {
-            viewModel.makeDaily(postId)
-        }
+    private fun setActionBar () {
+        supportActionBar?.title = diaryTitle
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun initListener(context: Context) {
@@ -86,6 +84,9 @@ class DailyHeaderListActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.buttonMakeNewDailyDailyListActivity.setOnClickListener {
+            viewModel.makeDaily(postId)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -104,6 +105,16 @@ class DailyHeaderListActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        adapter.clearAllData()
+        loadItemData()
+    }
 
+    private fun loadItemData() {
+        if (postId != 0) {
+            viewModel.loadDailyHeaderList(postId)
+        }
+    }
 
 }

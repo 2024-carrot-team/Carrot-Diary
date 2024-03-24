@@ -70,10 +70,10 @@ class DailyListViewModel @Inject constructor(
         viewModelScope.launch {
             val result = api.deleteDaily(
                 authorization = sharedPreferencesService.cookie ?: "",
-                postId = postId.toString()
+                postDiaryId = postId.toString()
             )
             if (result.isSuccessful && result.code() == 200 || result.code() == 201 ) {
-                _deleteDailyId.value++
+                _deleteDailyId.value = 100
 
             } else {
                 _deleteDailyId.value = -100
