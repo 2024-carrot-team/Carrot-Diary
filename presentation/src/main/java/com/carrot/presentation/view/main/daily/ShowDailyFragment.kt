@@ -16,11 +16,13 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ListAdapter
 import com.carrot.presentation.R
 import com.carrot.presentation.common.ReportType
 import com.carrot.presentation.databinding.DialogReportFrameBinding
 import com.carrot.presentation.databinding.FragmentShowDailyBinding
 import com.carrot.presentation.model.MainDiaries
+import com.carrot.presentation.model.MainDiary
 import com.carrot.presentation.view.dialog.DialogBuilder
 import com.carrot.presentation.view.main.MainActivity
 import com.carrot.presentation.view.main.diary.DiaryDetailActivity
@@ -121,6 +123,9 @@ class ShowDailyFragment : Fragment() {
                                 reportType = ReportType.OTHER
                             }
                         }
+
+
+
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -139,6 +144,7 @@ class ShowDailyFragment : Fragment() {
             }
         ).also { binding.recyclerShowShowDaily.adapter = it }
 
+        setUpSwipeRefresh(adapter)
 
         lifecycleScope.launch {
             viewModel.mainDiary.collect { data ->
@@ -148,5 +154,14 @@ class ShowDailyFragment : Fragment() {
             }
         }
     }
+
+
+    private fun setUpSwipeRefresh(adapter: ShowDailyAdapter) {
+        binding.swipeLayoutRefreshShowDaily.setOnRefreshListener {
+            viewModel.loadMainDaily()
+            binding.swipeLayoutRefreshShowDaily.isRefreshing = false
+        }
+    }
+
 
 }

@@ -24,6 +24,11 @@
         android:id="@+id/tabLayout_diary"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/main_orange"
+        app:tabIndicatorGravity="bottom"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/main_orange"
         app:tabTextAppearance="@style/tabText" />
 
 

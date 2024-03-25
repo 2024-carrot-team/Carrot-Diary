@@ -104,4 +104,7 @@ dependencies {
     kapt (DaggerHilt.DAGGER_HILT_COMPILER)
     kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
 
+    // Recycler Swiferefesh
+    implementation(Swiferefesh.SWIFERREFESH)
+
 }

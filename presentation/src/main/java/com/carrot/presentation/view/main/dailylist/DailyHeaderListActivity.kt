@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.carrot.presentation.R
 import com.carrot.presentation.databinding.ActivityDailyListBinding
 import com.carrot.presentation.view.main.writedaily.WriteDailyActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +37,8 @@ class DailyHeaderListActivity : AppCompatActivity() {
         println("DailyHeaderListActivity postId값 $postId")
         diaryTitle = intent.getStringExtra("diary_title") ?: ""
 
-        adapter = DailyListAdapter(this,
+        adapter = DailyListAdapter(
+            this,
             onItemClickListener = { dailyHeader ->
                 val intent = Intent(this, WriteDailyActivity::class.java)
                 intent.putExtra("diary", postId)
@@ -43,10 +48,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
                 startActivity(intent)
             },
             onDeleteClickListener = { postDiaryId, position ->
-                viewModel.deleteDaily(
-                    postDiaryId,
-                )
-                adapter.deleteItem(position)
+                ShowDeleteDialog(postDiaryId, position)
             },
         )
         setActionBar()
@@ -62,7 +64,7 @@ class DailyHeaderListActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun setActionBar () {
+    private fun setActionBar() {
         supportActionBar?.title = diaryTitle
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -115,6 +117,33 @@ class DailyHeaderListActivity : AppCompatActivity() {
         if (postId != 0) {
             viewModel.loadDailyHeaderList(postId)
         }
+    }
+
+    private fun ShowDeleteDialog(postDiaryId: Int, position: Int) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_check, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val title = dialogView.findViewById<TextView>(R.id.tv_dialog_tile)
+        val btnLeft = dialogView.findViewById<Button>(R.id.button_dialog_left)
+        val btnRight = dialogView.findViewById<Button>(R.id.button_dialog_right)
+
+        title.text = "정말 삭제하시겠습니까?"
+        btnLeft.text = "취소"
+        btnRight.text = "확인"
+
+        btnLeft.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        btnRight.setOnClickListener {
+            viewModel.deleteDaily(
+                postDiaryId,
+            )
+            adapter.deleteItem(position)
+        }
+        alertDialog.show()
     }
 
 }

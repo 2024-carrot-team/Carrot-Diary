@@ -3,6 +3,7 @@ package com.carrot.presentation.view.main.daily
 
 import android.net.Uri
 import android.opengl.Visibility
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -45,6 +46,9 @@ class ShowDailyAdapter(
                 false
             )
         )
+    }
+    fun DatasetClear() {
+        submitList(null)
     }
 
     override fun onBindViewHolder(holder: DailyViewHolder, position: Int) {

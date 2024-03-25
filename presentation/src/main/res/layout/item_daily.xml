@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_Daily"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="350dp"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="30dp"
     android:background="@drawable/main_diary_frame"
@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="218dp"
         android:src="@drawable/splash"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +126,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_iv_daily">
+        app:layout_constraintTop_toBottomOf="@+id/heart_iv_daily">
 
         <TextView
             android:id="@+id/content_tv_daily"

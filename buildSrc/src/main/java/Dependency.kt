@@ -65,3 +65,8 @@ object TestTool {
     const val ANDROID_X_JUNIT = "androidx.test.ext:junit:1.1.3"
     const val ANDROID_X_ESPRESSO = "androidx.test.espresso:espresso-core:3.4.0"
 }
+
+
+object Swiferefesh {
+    const val SWIFERREFESH = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+}
