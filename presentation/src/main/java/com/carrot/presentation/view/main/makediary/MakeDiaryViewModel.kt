@@ -53,6 +53,9 @@ class MakeDiaryViewModel @Inject constructor(
 
     val responseCode = _responseCode.asStateFlow()
 
+    private val _diaryListExist = MutableStateFlow<Boolean>(false)
+    val diaryListExist = _diaryListExist.asStateFlow()
+
     init {
         loadPostId()
     }
@@ -63,6 +66,7 @@ class MakeDiaryViewModel @Inject constructor(
                 authorization = sharedPreferencesService.cookie ?: ""
             )
             if (result.isSuccessful && result.code() == 200) {
+                _diaryListExist.value = true
                 result.body().let { diaryListDTO ->
                     _diaryList.value = diaryListDTO!!.toView()
                 }

@@ -7,20 +7,34 @@
     tools:context=".view.main.makediary.MakeDiaryActivity">
 
     <TextView
+        android:id="@+id/textView_titleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="일기장 제목"
+        android:text="일기장 새로 만들기"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editText_diaryTitle"
         app:layout_constraintEnd_toEndOf="@+id/editText_diaryTitle"
         app:layout_constraintStart_toStartOf="@id/editText_diaryTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/editText_diaryTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_titleLabel" />
 
     <EditText
         android:id="@+id/editText_diaryTitle"
         android:layout_width="300dp"
         android:layout_height="54dp"
         android:layout_marginTop="72dp"
+        android:background="@drawable/main_diary_title_frame"
+        android:hint="일기장의 제목을 입력해주세요"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,10 +63,18 @@
             android:text="나만보기" />
 
         <RadioButton
+            android:id="@+id/friends_rb_makeNewDiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="팔로워" />
+
+        <RadioButton
             android:id="@+id/public_rb_makeNewDiary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체공개" />
+
+
     </RadioGroup>
 
     <View
@@ -90,6 +112,7 @@
 
 
     <TextView
+        android:id="@+id/textview_titleImageLabel_diaryWriteDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -106,7 +129,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="30dp"
+        android:background="@drawable/daily_title_frame"
         android:text="생성"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

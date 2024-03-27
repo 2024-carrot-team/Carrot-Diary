@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.carrot.presentation.databinding.ActivityMakeDiaryBinding
@@ -98,6 +99,7 @@ class MakeDiaryActivity : AppCompatActivity() {
                 if (imageUri != null) {
                     viewModel.setUri(imageUri)
                     Glide.with(this).load(imageUri).into(binding.imageIvMakeNewDiary)
+                    binding.textviewTitleImageLabelDiaryWriteDialog.isVisible = false
                 }
             }
         }

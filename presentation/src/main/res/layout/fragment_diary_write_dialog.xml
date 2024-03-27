@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="5dp"
     tools:context=".view.main.makediary.DiaryWriteDialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
             android:id="@+id/container_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/main_orange"
+            android:background="@drawable/select_diary_title_frame"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
                 android:layout_margin="15dp"
                 android:gravity="left"
                 android:text="오늘은 어떤 하루였나요?"
-                android:textColor="@color/white"
+                android:textColor="@color/white_gray"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,9 +40,9 @@
             android:id="@+id/textView_subTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:gravity="left"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:gravity="left"
             android:text="나의 당근 일기장"
             android:textColor="@color/gray"
             android:textSize="12sp"
@@ -60,6 +60,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_subTitle"
             tools:listitem="@layout/item_diary_title" />
+
+        <TextView
+            android:id="@+id/textView_noDiaryList_diaryWriteDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="일기장이 없어요"
+            android:visibility="invisible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/button_makeNewDiary_diaryWriteDialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_subTitle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_makeNewDiary_diaryWriteDialog"

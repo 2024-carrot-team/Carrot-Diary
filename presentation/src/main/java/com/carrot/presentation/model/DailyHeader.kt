@@ -14,4 +14,5 @@ data class DailyHeader(
     val monthDay = month + day
     val yearMonth = year + month
     val yearMonthDay = year + month + day
+
 }

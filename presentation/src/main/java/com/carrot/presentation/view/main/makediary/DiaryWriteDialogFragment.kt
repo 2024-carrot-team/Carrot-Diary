@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.carrot.presentation.databinding.FragmentDiaryWriteDialogBinding
 import com.carrot.presentation.model.DiaryHeader
 import com.carrot.presentation.view.main.dailylist.DailyHeaderListActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DiaryWriteDialogFragment : DialogFragment() {
@@ -38,6 +41,12 @@ class DiaryWriteDialogFragment : DialogFragment() {
         viewModel.diaryList.observe(this) {
             initRecyclerView()
         }
+        lifecycleScope.launch {
+            viewModel.diaryListExist.collect { isExist ->
+                binding.textViewNoDiaryListDiaryWriteDialog.isVisible = !isExist
+            }
+        }
+
     }
 
     private fun initRecyclerView() {
