@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +24,14 @@ class SignUpViewModel @Inject constructor(
     private val _signUpResultCode = MutableStateFlow<Int>(0)
 
     val signUpResultCode = _signUpResultCode.asStateFlow()
+
+    val emailPattern =
+        "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}\$"
+
+    private val pwdPattern =
+        "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,16}$"
+
+    //    val pattern = Pattern.matches(pwdPattern, pwd)
     fun signUp(email: String, password: String, nickname: String, birthDate: String) {
         viewModelScope.launch {
             val result = api.postRegister(
@@ -47,4 +56,12 @@ class SignUpViewModel @Inject constructor(
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         return dateFormat.format(calendar.time)
     }
+
+    //    fun isEmail(id: String): Boolean = Pattern.matches(emailPattern, id)
+    fun isEmail(id: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(id).matches()
+
+    fun isPassword(pwd: String): Boolean = Pattern.matches(pwdPattern, pwd)
+
+
+    fun isPasswordEqual(pwd: String, pwdCheck: String): Boolean = pwd == pwdCheck
 }

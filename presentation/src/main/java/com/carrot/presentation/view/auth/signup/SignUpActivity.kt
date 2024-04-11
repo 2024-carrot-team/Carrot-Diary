@@ -2,10 +2,13 @@ package com.carrot.presentation.view.auth.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.carrot.presentation.databinding.ActivitySignUpBinding
 import com.carrot.presentation.view.main.MainActivity
@@ -24,7 +27,46 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "회원가입"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.editTextLoginIdSignUpActivity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val id = binding.editTextLoginIdSignUpActivity.text.toString().trim()
+                binding.textViewEmailLabelSignUpActivity.isVisible = !viewModel.isEmail(id)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+        binding.editTextPasswordSignUpActivity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val password = binding.editTextPasswordSignUpActivity.text.toString().trim()
+                println(viewModel.isPassword(password))
+                binding.textViewPasswordValidSignUpActivity.isVisible =
+                    !viewModel.isPassword(password)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+        binding.editTextPasswordCheckSignUpActivity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val password = binding.editTextPasswordSignUpActivity.text.toString().trim()
+                val passwordCheck =
+                    binding.editTextPasswordCheckSignUpActivity.text.toString().trim()
+                println(viewModel.isPasswordEqual(password, passwordCheck))
+                binding.textViewIsPasswordEqualSignUpActivity.isVisible =
+                    !viewModel.isPasswordEqual(password, passwordCheck)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
         binding.buttonSignUpSignUpActivity.setOnClickListener {
             val id = binding.editTextLoginIdSignUpActivity.text.toString()
             val password = binding.editTextPasswordSignUpActivity.text.toString()
@@ -32,10 +74,17 @@ class SignUpActivity : AppCompatActivity() {
             val nickname = binding.editTextNickNameSignUpActivity.text.toString()
             val birthDate = binding.editTextBirthDateSignUpActivity.text.toString()
 
-            if (id.isNullOrBlank() || id.isNullOrEmpty() || nickname.isNullOrEmpty() || birthDate.isNullOrEmpty()) {
-                Toast.makeText(this, "입력해주세요.", Toast.LENGTH_SHORT).show()
-            } else if (!password.equals(passwordCheck)) {
-                Toast.makeText(this, "비밀번호 확인해주세요.", Toast.LENGTH_SHORT).show()
+//            if (id.isNullOrBlank() || id.isNullOrEmpty() || nickname.isNullOrEmpty() || birthDate.isNullOrEmpty()) {
+//                Toast.makeText(this, "입력해주세요.", Toast.LENGTH_SHORT).show()
+//            } else if (!password.equals(passwordCheck)) {
+//                Toast.makeText(this, "비밀번호 확인해주세요.", Toast.LENGTH_SHORT).show()
+//            }
+            if (!viewModel.isPasswordEqual(
+                    password,
+                    passwordCheck
+                ) || !viewModel.isPassword(password) || !viewModel.isEmail(id)
+            ) {
+                Toast.makeText(this, "양식을 올바르게 작성해주세요", Toast.LENGTH_SHORT).show()
             } else if (isAgree) {
                 viewModel.signUp(id, password, nickname, birthDate)
                 val intent = Intent(this, MainActivity::class.java)

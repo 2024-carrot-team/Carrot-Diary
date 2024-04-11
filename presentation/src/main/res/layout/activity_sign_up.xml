@@ -23,6 +23,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView_emailLabel_signUpActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 형식을 바르게 입력해주세요"
+        android:textColor="@color/main_orange"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/editText_loginId_signUpActivity"
+        app:layout_constraintTop_toBottomOf="@id/editText_loginId_signUpActivity" />
+
 
     <EditText
         android:id="@+id/editText_password_signUpActivity"
@@ -56,14 +66,27 @@
         android:textColorHint="@color/black_alpha20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_passwordValid_signUpActivity" />
+
+    <TextView
+        android:id="@+id/textView_passwordValid_signUpActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8~16자 이상의 문자,숫자,특수문자의 조합으로 적어야 합니다. "
+        android:textColor="@color/main_orange"
+        android:textSize="10sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/editText_password_signUpActivity"
         app:layout_constraintTop_toBottomOf="@id/editText_password_signUpActivity" />
 
     <TextView
+        android:id="@+id/textView_isPasswordEqual_signUpActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8자 이상의 문자,숫자,특수문자의 조합으로 적어야 합니다. "
-        android:textColor="@color/main_orange"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="@color/red"
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/editText_passwordCheck_signUpActivity"
         app:layout_constraintTop_toBottomOf="@id/editText_passwordCheck_signUpActivity" />
 

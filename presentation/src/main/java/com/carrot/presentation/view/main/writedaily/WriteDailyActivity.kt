@@ -1,14 +1,17 @@
 package com.carrot.presentation.view.main.writedaily
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
+import android.graphics.Point
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -44,7 +47,7 @@ class WriteDailyActivity : AppCompatActivity() {
         binding.recyclerViewAccidentListWriteDailyActivity.adapter = accidentListAdapter
         val postId = intent.getIntExtra("diary", 0)
         val dailyId = intent.getIntExtra("daily", 0)
-        val dailyDate = intent.getStringExtra("daily_date")
+        var dailyDate = intent.getStringExtra("daily_date")
         val diaryTitle = intent.getStringExtra("diary_title")
         setActionBar(diaryTitle)
 
@@ -94,6 +97,8 @@ class WriteDailyActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("기억나는 일 적기")
         dialogBinding = DialogAccidentMakeBinding.inflate(layoutInflater)
+        dialogBinding.root.minHeight = 600
+
         builder.setView(dialogBinding.root)
         dialogBinding.textViewBlankImgAccidentMakeDialog.setOnClickListener {
             if (viewModel.imageList.value.size > 5) {

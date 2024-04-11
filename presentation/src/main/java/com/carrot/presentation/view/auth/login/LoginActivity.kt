@@ -74,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     private fun initLiveData() {
@@ -84,11 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     toastMassage("로그인 실패")
                 } else if (isLogin == 1) {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    println("쿠키 입력${isLogin}")
-//                    editor.putString("token", isLogin)
-//                    editor.apply()
                     startActivity(intent)
-                    toastMassage("로그인 성공")
                     finish()
                 }
             }
