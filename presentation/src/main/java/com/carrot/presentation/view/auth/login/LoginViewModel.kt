@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,6 +21,13 @@ class LoginViewModel @Inject constructor(
     val isLogin = _isLogin.asStateFlow()
 
     var cookie: String = ""
+
+    val emailPattern =
+        "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}\$"
+
+    private val pwdPattern =
+        "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,16}$"
+
 
     fun login(id: String, password: String) {
         viewModelScope.launch {
@@ -38,16 +46,6 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    //    fun login(postUser: PostUser) {
-//        viewModelScope.launch {
-//            val result = api.postLogin(postUser)
-//            println("api요청 issuccesful ${result.isSuccessful}")
-//            println("api요청 result.body() ${result.body()}")
-//            if (result.isSuccessful) {
-//                _isLogin.value = true
-//            }
-//        }
-//    }
     fun extractTokenFromCookie(cookie: String): String? {
         // "Authorization=Bearer%20{token}; Path=/" 형태의 쿠키에서 토큰 부분만 추출
         val tokenPrefix = "Authorization=Bearer%20"
@@ -69,4 +67,8 @@ class LoginViewModel @Inject constructor(
         val token = extractTokenFromCookie(cookie)
         return if (token != null) "Bearer $token" else ""
     }
+
+    fun isEmail(id: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(id).matches()
+    fun isPassword(pwd: String): Boolean = Pattern.matches(pwdPattern, pwd)
+
 }

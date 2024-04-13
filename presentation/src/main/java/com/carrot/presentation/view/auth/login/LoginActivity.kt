@@ -4,21 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.carrot.data.remote.api.LoginApiService
 import com.carrot.presentation.view.main.MainActivity
 import com.carrot.presentation.databinding.ActivityLoginBinding
-import com.carrot.data.model.PostUser
 import com.carrot.presentation.R
 import com.carrot.presentation.view.auth.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -37,11 +36,8 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getPreferences(Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
         initLiveData()
-
         val action = supportActionBar
         action?.hide()
-
-
         initListener()
 
 
@@ -49,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initListener() {
         binding.buttonLoginLogin.setOnClickListener {
-            val email = binding.editTextLoginIdLogin.text.toString()
-            val pass = binding.editTextPasswordLogin.text.toString()
+            val email = binding.editTextLoginIdLoginActivity.text.toString()
+            val pass = binding.editTextPasswordLoginActivity.text.toString()
             viewModel.login(
                 email, pass
             )
@@ -72,6 +68,38 @@ class LoginActivity : AppCompatActivity() {
         binding.textFindPassLogin.setOnClickListener {
             toastMassage(getString(R.string.developing))
         }
+
+        binding.editTextLoginIdLoginActivity.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val id = binding.editTextLoginIdLoginActivity.text.toString().trim()
+                binding.textViewEmailLabelLoginActivity.isVisible = !viewModel.isEmail(id)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+
+        binding.editTextPasswordLoginActivity.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val password = binding.editTextPasswordLoginActivity.text.toString().trim()
+                val len = password.length
+                when {
+                    len < 8 || len > 16 -> {
+                        binding.textViewPasswordLabelLoginActivity.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.textViewPasswordLabelLoginActivity.visibility = View.INVISIBLE
+                    }
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
 
 
     }
