@@ -28,6 +28,9 @@ class LoginViewModel @Inject constructor(
     private val pwdPattern =
         "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,16}$"
 
+    private val _notiLoginLabel =  MutableStateFlow<Boolean>(false)
+    var notiLoginLabel = _notiLoginLabel.asStateFlow()
+
 
     fun login(id: String, password: String) {
         viewModelScope.launch {
@@ -70,5 +73,11 @@ class LoginViewModel @Inject constructor(
 
     fun isEmail(id: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(id).matches()
     fun isPassword(pwd: String): Boolean = Pattern.matches(pwdPattern, pwd)
+
+    fun setNotiLoginLabel() {
+        _notiLoginLabel.value = true
+    }
+
+    fun getNotiLoginLabel() = _notiLoginLabel.value
 
 }

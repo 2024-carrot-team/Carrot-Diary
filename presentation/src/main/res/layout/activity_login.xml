@@ -47,9 +47,10 @@
         android:id="@+id/textView_emailLabel_loginActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이메일 형식이 아닙니다."
+        android:text="이메일 형식으로 입력해주세요."
         android:textColor="@color/main_orange"
         android:textSize="9sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/editText_loginId_loginActivity"
         app:layout_constraintTop_toBottomOf="@+id/editText_loginId_loginActivity" />
 
@@ -73,16 +74,17 @@
         android:id="@+id/textView_passwordLabel_loginActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8자 이상 ~16자 이내로 적어야 합니다."
+        android:text="8~16자 이상의 영어(대소문자), 숫자, 특수문자 조합으로 입력해주세요. "
         android:textColor="@color/main_orange"
         android:textSize="9sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/editText_password_loginActivity"
         app:layout_constraintTop_toBottomOf="@+id/editText_password_loginActivity" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="27dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/editText_password_loginActivity"
         app:layout_constraintTop_toBottomOf="@+id/editText_password_loginActivity">
@@ -127,7 +129,10 @@
         android:id="@+id/button_login_login"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_margin="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+
         android:background="@drawable/accident_make_frame"
         android:text="로그인"
         android:textColor="@color/white"

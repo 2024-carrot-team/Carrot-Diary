@@ -72,7 +72,7 @@
         android:id="@+id/textView_passwordValid_signUpActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8~16자 이상의 문자,숫자,특수문자의 조합으로 적어야 합니다. "
+        android:text="8~16자 이상의 영어(대소문자), 숫자, 특수문자의 조합으로 입력해야 합니다. "
         android:textColor="@color/main_orange"
         android:textSize="10sp"
         android:visibility="invisible"
