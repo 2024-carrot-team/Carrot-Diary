@@ -28,8 +28,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            proguardFile("proguard-rules.pro")
-            proguardFile("proguard-debug.pro")
         }
     }
     compileOptions {
@@ -54,6 +52,7 @@ dependencies {
     implementation(AndroidX.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
     implementation(AndroidX.RECYCLERVIEW)
+    implementation(AndroidX.WINDOW)
 
     //Test
     testImplementation (TestTool.JUNIT)

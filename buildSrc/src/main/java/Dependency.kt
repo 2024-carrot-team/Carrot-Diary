@@ -41,6 +41,7 @@ object AndroidX {
     const val ACTIVITY = "androidx.activity:activity-ktx:1.3.1"
     const val FRAGMENT = "androidx.fragment:fragment-ktx:1.5.2"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.1"
+    const val WINDOW ="androidx.window:window:1.2.0"
 }
 
 object KTX {

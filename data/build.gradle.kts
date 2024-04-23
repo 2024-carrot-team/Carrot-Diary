@@ -29,8 +29,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            proguardFile("proguard-rules.pro")
-            proguardFile("proguard-debug.pro")
         }
     }
     compileOptions {

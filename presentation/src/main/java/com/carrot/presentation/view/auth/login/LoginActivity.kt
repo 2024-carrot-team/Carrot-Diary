@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                     )
                     viewModel.setNotiLoginLabel()
                 }
+
                 else -> viewModel.login(email, pass)
             }
 
@@ -80,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(viewModel.getNotiLoginLabel()) {
+                if (viewModel.getNotiLoginLabel()) {
                     val email = binding.editTextLoginIdLoginActivity.text.toString()
                     binding.textViewEmailLabelLoginActivity.isVisible = !viewModel.isEmail(email)
                 }
@@ -94,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
         binding.editTextPasswordLoginActivity.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(viewModel.getNotiLoginLabel()){
+                if (viewModel.getNotiLoginLabel()) {
                     val password = binding.editTextPasswordLoginActivity.text.toString().trim()
                     val len = password.length
                     when {

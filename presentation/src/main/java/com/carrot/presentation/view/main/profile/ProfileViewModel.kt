@@ -38,10 +38,6 @@ class ProfileViewModel @Inject constructor(
                 result.body().let { diaryListDTO ->
                     _diaryList.value = diaryListDTO!!.toView()
                 }
-
-
-                Log.d("okhttp","${diaryList.value[0].postId}")
-
             }
         }
     }

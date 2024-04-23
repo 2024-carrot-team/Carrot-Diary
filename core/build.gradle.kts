@@ -10,7 +10,7 @@ android {
     compileSdk = SdkVersions.compileSdk
 
     defaultConfig {
-        applicationId = "com.carrot.core"
+        applicationId = "team.carrot"
         minSdk = SdkVersions.minSdk
         targetSdk = SdkVersions.targetSdk
         versionCode = AppVersions.androidVersionCode
@@ -21,20 +21,18 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            proguardFile("proguard-rules.pro")
-            proguardFile("proguard-debug.pro")
         }
     }
     compileOptions {
