@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.main.writedaily.WriteDailyActivity">
+
+
+    <TextView
+        android:id="@+id/textView_dailyDate_writeDailyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/daily_title_frame"
+        android:gravity="start"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2024년 2월 08일의 일기" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_accidentList_writeDailyActivity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom_writeDailyActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_dailyDate_writeDailyActivity"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_accident_list" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom_writeDailyActivity"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+
+    <Button
+        android:id="@+id/button_makeNewAccident_writeDailyActivity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/daily_title_frame"
+        android:gravity="center"
+        android:text="오늘의 기억 추가하기"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_bottom_writeDailyActivity" />
+
+    <Button
+        android:id="@+id/button_regiDaily_writeDailyActivity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/daily_title_frame"
+        android:gravity="center"
+        android:text="일기 등록하기"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_makeNewAccident_writeDailyActivity" />
+</androidx.constraintlayout.widget.ConstraintLayout>

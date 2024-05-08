@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <meta-data
+        android:name="google_analytics_adid_collection_enabled"
+        android:value="false" />
+    <application
+        android:name="com.carrot.di.App"
+        android:allowBackup="true"
+        android:icon="@drawable/splash"
+        android:label="당근일기"
+        android:roundIcon="@drawable/splash"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Carrotdiary"
+        android:usesCleartextTraffic="true" />
+
+</manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/nav_diaryFragment">
+    <fragment
+        android:id="@+id/nav_notifyFragment"
+        android:name="com.carrot.presentation.view.main.alarm.AlarmFragment"
+        android:label="fragment_alarm"
+        tools:layout="@layout/fragment_alarm" />
+    <fragment
+        android:id="@+id/nav_diaryFragment"
+        android:name="com.carrot.presentation.view.main.daily.DailyFragment"
+        android:label="fragment_diary"
+        tools:layout="@layout/fragment_diary">
+        <action
+            android:id="@+id/action_diaryFragment_to_alarmFragment"
+            app:destination="@id/nav_notifyFragment" />
+        <action
+            android:id="@+id/action_diaryFragment_to_profileFragment"
+            app:destination="@id/nav_profileFragment" />
+        <action
+            android:id="@+id/action_nav_diaryFragment_to_diaryWriteDialogFragment"
+            app:destination="@id/nav_diaryWriteFragment" />
+        <action
+            android:id="@+id/action_nav_diaryFragment_to_questionFragment"
+            app:destination="@id/nav_questionFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_profileFragment"
+        android:name="com.carrot.presentation.view.main.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_questionFragment"
+        android:name="com.carrot.presentation.view.main.question.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" />
+
+    <dialog
+        android:id="@+id/nav_diaryWriteFragment"
+        android:name="com.carrot.presentation.view.main.makediary.DiaryWriteDialogFragment"
+        android:label="fragment_diary_write_dialog"
+        tools:layout="@layout/fragment_diary_write_dialog" />
+
+
+</navigation>

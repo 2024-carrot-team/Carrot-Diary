@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/container_tv_dily"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/day_tv_dailyList"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="guen 오랜랜난에 보낸 최고의 토요일! 이보다 더 좋을 순 없을 거같
+다. 공부해야하는데 맨날 놀고 있다.오랜랜난에 보낸 최고의 토요일!
+ 이보다 더 좋을 순 없을 거같다. 공부해야하는데 맨날 놀고 있다.
+맨날  놀고 싶다." />
+
+    <TextView
+        android:id="@+id/day_tv_dailyList"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="1일"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageExi_iv_dailyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/image_exist"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/day_tv_dailyList"
+        app:layout_constraintTop_toBottomOf="@+id/container_tv_dily" />
+
+    <ImageButton
+        android:id="@+id/delete_ib_dailyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_tv_dily" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/container_tv_dily"
+        app:layout_constraintTop_toBottomOf="@id/imageExi_iv_dailyList" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
