@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_Daily"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="30dp"
+    android:background="@drawable/main_diary_frame"
+    android:elevation="1dp"
+    app:cardCornerRadius="5dp">
+
+
+    <ImageView
+        android:id="@+id/iv_daily"
+        android:layout_width="match_parent"
+        android:layout_height="218dp"
+        android:src="@drawable/splash"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/main_diary_title_frame"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_person_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="사용자id"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/main_diary_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:text="2024-12-01"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/more_ib_daily"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/more"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/heart_iv_daily"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+    <TextView
+        android:id="@+id/heartCount_tv_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/heart_iv_daily"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+
+    <ImageView
+        android:id="@+id/comment_iv_daily"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/comment"
+        app:layout_constraintStart_toEndOf="@id/heartCount_tv_daily"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+    <TextView
+        android:id="@+id/commentCount_tv_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="44"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/comment_iv_daily"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+
+    <TextView
+        android:id="@+id/viewsCount_tv_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="44"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+    <ImageView
+        android:id="@+id/views_iv_daily"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/views"
+        app:layout_constraintEnd_toStartOf="@id/viewsCount_tv_daily"
+        app:layout_constraintTop_toBottomOf="@id/iv_daily" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heart_iv_daily">
+
+        <TextView
+            android:id="@+id/content_tv_daily"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="3"
+            android:text="guen 오랜랜난에 보낸 최고의 토요일! 이보다 더 좋을 순 없을 거같다. 공부해야하는데 맨날 놀고 있다.오랜랜난에 보낸 최고의 토요일! 이보다 더 좋을 순 없을 거같다. 공부해야하는데 맨날 놀고 있다. 맨날  " />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

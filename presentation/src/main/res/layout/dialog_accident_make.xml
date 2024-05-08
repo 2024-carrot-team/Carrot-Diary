@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_accidentImageList_accidentMakeDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/guideline_accidentMakeDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_accident_image_list" />
+
+    <TextView
+        android:id="@+id/textView_blankImg_accidentMakeDialog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:scaleType="centerCrop"
+        android:text="일상의 사진을 넣어보세요"
+        android:textColor="#F0E6E6"
+        app:layout_constraintBottom_toTopOf="@id/guideline_accidentMakeDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_accidentMakeDialog"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <EditText
+        android:id="@+id/editText_accidentContext_accidentMakeDialog"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/accident_content_frame"
+        android:hint="오늘 어떤일이 있으셨나요???"
+        android:lineBreakStyle="strict"
+        android:textColorHint="#F0E6E6"
+        app:layout_constraintBottom_toTopOf="@id/button_makeNewAccident_accidentMakeDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_accidentMakeDialog"
+        tools:text="오늘 아침  집앞 산책을 가면서 댕댕이들을 찍으며 힐링하는 시간을 가졌다. " />
+
+
+    <Button
+        android:id="@+id/button_makeNewAccident_accidentMakeDialog"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/daily_title_frame"
+        android:gravity="center"
+        android:text="일상 등록하기"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
